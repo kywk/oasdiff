@@ -18,6 +18,7 @@ const (
 	FormatGithubActions Format = "githubactions"
 	FormatJUnit         Format = "junit"
 	FormatSarif         Format = "sarif"
+	FormatAsciidoc      Format = "asciidoc"
 )
 
 func GetSupportedFormats() []string {
@@ -29,6 +30,7 @@ func GetSupportedFormats() []string {
 		string(FormatMarkdown),
 		string(FormatSingleLine),
 		string(FormatHTML),
+		string(FormatAsciidoc),
 		string(FormatGithubActions),
 		string(FormatJUnit),
 		string(FormatSarif),

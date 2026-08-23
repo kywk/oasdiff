@@ -38,7 +38,7 @@ func TestSupportsTemplateMethod(t *testing.T) {
 func TestGetSupportedTemplateFormats(t *testing.T) {
 	supportedFormats := formatters.GetSupportedTemplateFormats()
 
-	expectedFormats := []string{"html", "markdown", "markup"}
+	expectedFormats := []string{"asciidoc", "html", "markdown", "markup"}
 	require.Equal(t, expectedFormats, supportedFormats, "GetSupportedTemplateFormats should return sorted list of template-supporting formats")
 
 	// Verify all returned formats actually support templates

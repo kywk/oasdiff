@@ -30,6 +30,7 @@ var formatters = map[Format]Formatter{
 	FormatMarkdown:      MarkupFormatter{},
 	FormatSingleLine:    SingleLineFormatter{},
 	FormatHTML:          HTMLFormatter{},
+	FormatAsciidoc:      AsciidocFormatter{},
 	FormatGithubActions: GitHubActionsFormatter{},
 	FormatJUnit:         JUnitFormatter{},
 }
@@ -52,6 +53,8 @@ func Lookup(format string, opts FormatterOpts) (Formatter, error) {
 		return newSingleLineFormatter(l), nil
 	case FormatHTML:
 		return newHTMLFormatter(l, opts.BaseVersion, opts.RevisionVersion), nil
+	case FormatAsciidoc:
+		return newAsciidocFormatter(l, opts.BaseVersion, opts.RevisionVersion), nil
 	case FormatGithubActions:
 		return newGitHubActionsFormatter(l), nil
 	case FormatJUnit:

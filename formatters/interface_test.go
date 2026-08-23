@@ -15,13 +15,14 @@ func TestUnsupportedLookup(t *testing.T) {
 
 func TestDiffOutputFormats(t *testing.T) {
 	supportedFormats := formatters.SupportedFormatsByContentType(formatters.OutputDiff)
-	assert.Len(t, supportedFormats, 6)
+	assert.Len(t, supportedFormats, 7)
 	assert.Contains(t, supportedFormats, string(formatters.FormatYAML))
 	assert.Contains(t, supportedFormats, string(formatters.FormatJSON))
 	assert.Contains(t, supportedFormats, string(formatters.FormatText))
 	assert.Contains(t, supportedFormats, string(formatters.FormatMarkup))
 	assert.Contains(t, supportedFormats, string(formatters.FormatMarkdown))
 	assert.Contains(t, supportedFormats, string(formatters.FormatHTML))
+	assert.Contains(t, supportedFormats, string(formatters.FormatAsciidoc))
 }
 
 func TestSummaryOutputFormats(t *testing.T) {
@@ -33,7 +34,7 @@ func TestSummaryOutputFormats(t *testing.T) {
 
 func TestChangelogOutputFormats(t *testing.T) {
 	supportedFormats := formatters.SupportedFormatsByContentType(formatters.OutputChangelog)
-	assert.Len(t, supportedFormats, 9)
+	assert.Len(t, supportedFormats, 10)
 	assert.Contains(t, supportedFormats, string(formatters.FormatYAML))
 	assert.Contains(t, supportedFormats, string(formatters.FormatJSON))
 	assert.Contains(t, supportedFormats, string(formatters.FormatText))
@@ -41,6 +42,7 @@ func TestChangelogOutputFormats(t *testing.T) {
 	assert.Contains(t, supportedFormats, string(formatters.FormatMarkdown))
 	assert.Contains(t, supportedFormats, string(formatters.FormatSingleLine))
 	assert.Contains(t, supportedFormats, string(formatters.FormatHTML))
+	assert.Contains(t, supportedFormats, string(formatters.FormatAsciidoc))
 	assert.Contains(t, supportedFormats, string(formatters.FormatGithubActions))
 	assert.Contains(t, supportedFormats, string(formatters.FormatJUnit))
 }

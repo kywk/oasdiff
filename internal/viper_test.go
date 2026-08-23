@@ -87,7 +87,7 @@ func TestViper_InvalidFormat(t *testing.T) {
 
 	cmd := cobra.Command{}
 
-	require.EqualError(t, internal.RunViper(&cmd, v), "failed to load config file: invalid format \"invalid\", allowed values: yaml, json, text, markup, markdown, singleline, html, githubactions, junit, sarif")
+	require.EqualError(t, internal.RunViper(&cmd, v), "failed to load config file: invalid format \"invalid\", allowed values: yaml, json, text, markup, markdown, singleline, html, asciidoc, githubactions, junit, sarif")
 }
 
 func TestViper_InvalidFailOn(t *testing.T) {

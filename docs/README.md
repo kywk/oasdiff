@@ -74,6 +74,7 @@ The top-level subcommands.
 - [`checks validate`](CHECKS.md#validate-checks) — list the rules `validate` reports
 - [`schema`](BREAKING-CHANGES.md#json-schema) — print a JSON Schema for the `breaking`/`changelog` json output
 - [`git-diff-driver`](GIT-DIFF-DRIVER.md) — run as a git external diff driver so `git log --patch` renders an OpenAPI changelog inline
+- [`inventory`](inventory.md) — API inventory management for periodic auditing (generate, review, diff, apply, merge inventory sheets)
 
 ### Inputs
 Where specs come from.

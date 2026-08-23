@@ -74,6 +74,10 @@ func calcDiff(flags *Flags) (*diffResult, *ReturnError) {
 	loader.IncludeOrigin = true
 	loader.IsExternalRefsAllowed = flags.getAllowExternalRefs()
 
+	if authReader := flags.getHTTPAuthLoader(); authReader != nil {
+		loader.ReadFromURIFunc = authReader
+	}
+
 	if flags.getComposed() {
 		return composedDiff(loader, flags)
 	}

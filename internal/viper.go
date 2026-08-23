@@ -210,6 +210,8 @@ type Config struct {
 	AllowExternalRefs      bool     `mapstructure:"allow-external-refs"`
 	AutoUpgrade            bool     `mapstructure:"auto-upgrade"`
 	Fetch                  bool     `mapstructure:"fetch"`
+	Header                 []string `mapstructure:"header"`
+	Query                  []string `mapstructure:"query"`
 	Template               string   `mapstructure:"template"`
 }
 

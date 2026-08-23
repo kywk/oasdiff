@@ -35,6 +35,11 @@ func runFlatten(flags *Flags, stdout io.Writer) (bool, *ReturnError) {
 
 	loader := openapi3.NewLoader()
 	loader.IsExternalRefsAllowed = flags.getAllowExternalRefs()
+
+	if authReader := flags.getHTTPAuthLoader(); authReader != nil {
+		loader.ReadFromURIFunc = authReader
+	}
+
 	spec, err := load.NewSpecInfo(loader, flags.getBase(), load.WithFlattenAllOf())
 	if err != nil {
 		return false, getErrFailedToLoadSpec("original", flags.getBase(), err)

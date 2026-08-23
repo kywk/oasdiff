@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/oasdiff/oasdiff/diff"
 	"github.com/oasdiff/oasdiff/load"
 	"github.com/spf13/viper"
@@ -184,4 +185,24 @@ func (flags *Flags) getTemplate() string {
 
 func (flags *Flags) getStabilityLevel() string {
 	return flags.v.GetString("stability-level")
+}
+
+
+func (flags *Flags) getHeaders() []string {
+	return fixViperStringSlice(flags.v.GetStringSlice("header"))
+}
+
+func (flags *Flags) getQueryParams() []string {
+	return fixViperStringSlice(flags.v.GetStringSlice("query"))
+}
+
+// getHTTPAuthLoader returns a ReadFromURIFunc configured with the --header and
+// --query flags, or nil when neither is set (in which case the default loader
+// behaviour is used).
+func (flags *Flags) getHTTPAuthLoader() openapi3.ReadFromURIFunc {
+	config := &load.HTTPAuthConfig{
+		Headers:     flags.getHeaders(),
+		QueryParams: flags.getQueryParams(),
+	}
+	return load.NewAuthLoader(config)
 }

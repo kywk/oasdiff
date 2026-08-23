@@ -76,6 +76,10 @@ func runValidate(flags *Flags, stdout io.Writer) (bool, *ReturnError) {
 	// that don't surface line/column simply ignore the extra fields.
 	loader.IncludeOrigin = true
 
+	if authReader := flags.getHTTPAuthLoader(); authReader != nil {
+		loader.ReadFromURIFunc = authReader
+	}
+
 	spec, err := load.NewSpecInfo(loader, flags.getBase())
 	if err != nil {
 		return false, getErrFailedToLoadSpec("original", flags.getBase(), err)

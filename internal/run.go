@@ -42,6 +42,7 @@ func Run(args []string, stdout io.Writer, stderr io.Writer) int {
 		getValidateCmd(),
 		getSchemaCmd(),
 		getGitDiffDriverCmd(),
+		getInventoryCmd(),
 	)
 
 	return run(rootCmd)

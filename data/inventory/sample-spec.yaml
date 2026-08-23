@@ -1,0 +1,157 @@
+openapi: "3.0.3"
+info:
+  title: "Sample API"
+  version: "1.0.0"
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      summary: "List all users"
+      description: "Returns a list of all users in the system"
+      tags:
+        - users
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      x-transaction: false
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      operationId: createUser
+      summary: "Create a user"
+      description: "Create a new user in the system"
+      tags:
+        - users
+      x-transaction: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserRequest"
+      responses:
+        "201":
+          description: "User created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /users/{id}:
+    get:
+      operationId: getUser
+      summary: "Get user by ID"
+      description: "Returns a single user"
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      x-transaction: false
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    delete:
+      operationId: deleteUser
+      summary: "Delete a user"
+      description: "Delete a user by ID"
+      tags:
+        - users
+        - admin
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      x-transaction: true
+      responses:
+        "204":
+          description: "User deleted"
+  /orders:
+    get:
+      operationId: listOrders
+      summary: "List orders"
+      description: "Returns a list of orders"
+      tags:
+        - orders
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, completed, cancelled]
+      x-transaction: false
+      responses:
+        "200":
+          description: "Successful response"
+    post:
+      operationId: createOrder
+      summary: "Create an order"
+      description: "Create a new order"
+      tags:
+        - orders
+      x-transaction: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrderRequest"
+      responses:
+        "201":
+          description: "Order created"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+    CreateUserRequest:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+    CreateOrderRequest:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+              quantity:
+                type: integer

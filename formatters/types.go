@@ -2,7 +2,8 @@ package formatters
 
 import (
 	"fmt"
-	"github.com/oasdiff/oasdiff/checker"
+
+	"github.com/oasdiff/oasdiff/colorize"
 )
 
 type Format string
@@ -46,7 +47,7 @@ type FormatterOpts struct {
 
 // RenderOpts can be used to pass properties to the renderer method
 type RenderOpts struct {
-	ColorMode    checker.ColorMode
+	ColorMode    colorize.ColorMode
 	WrapInObject bool   // wrap the output in a JSON object with the key "changes"
 	TemplatePath string // path to custom template file for changelog generation
 	DiffEmpty    bool   // true when the underlying diff found no changes at all
@@ -55,7 +56,7 @@ type RenderOpts struct {
 
 func NewRenderOpts() RenderOpts {
 	return RenderOpts{
-		ColorMode: checker.ColorAuto,
+		ColorMode: colorize.ColorAuto,
 	}
 }
 

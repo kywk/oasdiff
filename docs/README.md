@@ -67,11 +67,13 @@ The top-level subcommands.
 - [`summary`](DIFF.md) — high-level count of changes between two specs (built on the diff engine; same shared options)
 - [`breaking`](BREAKING-CHANGES.md) — only the changes that break existing API clients
 - [`changelog`](BREAKING-CHANGES.md) — changes that can affect API consumers, breaking or not, in human-readable form
+- [`breaking-files`](BREAKING-FILES.md) — check a list of changed specs against their versions in a git ref, one comparison per spec; used by the [pre-commit hook](BREAKING-FILES.md#pre-commit-hook)
 - [`flatten`](ALLOF.md) — replace `allOf` schemas with a merged equivalent
 - [`upgrade`](OPENAPI-31.md#converting-a-spec-with-oasdiff-upgrade) — canonicalize an OpenAPI 3.0 spec to the latest 3.x
 - [`validate`](VALIDATE.md) — check a single spec for per-RFC violations (invalid types, missing required fields, bad regex, unresolved `$ref`s)
 - [`checks changelog`](CHECKS.md) — list the rules `breaking` and `changelog` use to classify changes ([customize them](CUSTOMIZING-CHECKS.md))
 - [`checks validate`](CHECKS.md#validate-checks) — list the rules `validate` reports
+- [`checks changelog coverage`](CHECKS.md#coverage-map) — list every possible edit of an OpenAPI document with the checks that cover it
 - [`schema`](BREAKING-CHANGES.md#json-schema) — print a JSON Schema for the `breaking`/`changelog` json output
 - [`git-diff-driver`](GIT-DIFF-DRIVER.md) — run as a git external diff driver so `git log --patch` renders an OpenAPI changelog inline
 - [`inventory`](inventory.md) — API inventory management for periodic auditing (generate, review, diff, apply, merge inventory sheets)
@@ -88,6 +90,7 @@ How oasdiff pairs up base and revision and what counts as a difference.
 - [Endpoint matching](MATCHING-ENDPOINTS.md) — handles renamed path parameters and [duplicate endpoints](MATCHING-ENDPOINTS.md#duplicate-endpoints)
 - [Nullability changes](NULLABILITY.md) — the three equivalent nullable forms and when changing them is breaking
 - [Compare APIs split across multiple files](COMPOSED.md) — e.g. an API gateway with one spec per service
+- [Check many independent specs](BREAKING-FILES.md) — one comparison per spec, rather than merging them as composed mode does
 - [Filter endpoints](FILTERING-ENDPOINTS.md) — narrow the diff to a subset of endpoints
 
 ### Normalization

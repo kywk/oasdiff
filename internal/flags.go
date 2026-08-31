@@ -1,7 +1,10 @@
 package internal
 
 import (
+	"fmt"
+
 	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/oasdiff/oasdiff/checker"
 	"github.com/oasdiff/oasdiff/diff"
 	"github.com/oasdiff/oasdiff/load"
 	"github.com/spf13/viper"
@@ -187,7 +190,6 @@ func (flags *Flags) getStabilityLevel() string {
 	return flags.v.GetString("stability-level")
 }
 
-
 func (flags *Flags) getHeaders() []string {
 	return fixViperStringSlice(flags.v.GetStringSlice("header"))
 }
@@ -205,4 +207,17 @@ func (flags *Flags) getHTTPAuthLoader() openapi3.ReadFromURIFunc {
 		QueryParams: flags.getQueryParams(),
 	}
 	return load.NewAuthLoader(config)
+}
+
+// failOnLevel converts the --fail-on value to the severity that fails the
+// command. The flag rejects anything outside GetSupportedLevels and the
+// config file does the same, so the error is unreachable for a value that
+// got this far, and is returned rather than dropped in case the two ever
+// disagree.
+func (flags *Flags) failOnLevel() (checker.Level, *ReturnError) {
+	level, err := checker.NewLevel(flags.getFailOn())
+	if err != nil {
+		return checker.NONE, getErrInvalidFlags(fmt.Errorf("invalid fail-on value %q", flags.getFailOn()))
+	}
+	return level, nil
 }

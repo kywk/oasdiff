@@ -2,10 +2,12 @@ module github.com/oasdiff/oasdiff
 
 go 1.26
 
+toolchain go1.26.7
+
 require (
 	cloud.google.com/go v0.123.0
 	github.com/TwiN/go-color v1.4.1
-	github.com/getkin/kin-openapi v0.147.0
+	github.com/getkin/kin-openapi v0.149.0
 	github.com/invopop/jsonschema v0.14.0
 	github.com/santhosh-tekuri/jsonschema/v6 v6.0.3
 	github.com/spf13/pflag v1.0.10
@@ -45,12 +47,11 @@ require (
 	golang.org/x/crypto v0.53.0 // indirect
 	golang.org/x/net v0.56.0 // indirect
 	golang.org/x/sys v0.46.0 // indirect
-	golang.org/x/text v0.38.0 // indirect
+	golang.org/x/text v0.41.0 // indirect
 )
 
 require (
 	github.com/go-openapi/jsonpointer v0.22.5 // indirect
-	github.com/iancoleman/strcase v0.3.0
 	github.com/spf13/cobra v1.10.2
 	github.com/wI2L/jsondiff v0.7.1
 )

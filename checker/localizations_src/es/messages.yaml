@@ -197,6 +197,12 @@ response-header-became-not-nullable-description: el encabezado de respuesta dej�
 response-media-type-removed: removido el tipo de media %s de la respuesta con estado %s
 response-media-type-added: agregado el tipo de media %s a la respuesta con estado %s
 response-media-type-name-changed: el tipo de media %s fue cambiado a %s para el estado de respuesta %s
+response-media-type-parameter-added: el parámetro de tipo de medio %s se añadió a %s para el estado de respuesta %s
+response-media-type-parameter-removed: el parámetro de tipo de medio %s se eliminó de %s para el estado de respuesta %s
+response-media-type-parameter-changed: el parámetro de tipo de medio %s de %s cambió de %s a %s para el estado de respuesta %s
+response-media-type-parameter-added-description: parámetro de tipo de medio de respuesta añadido
+response-media-type-parameter-removed-description: parámetro de tipo de medio de respuesta eliminado
+response-media-type-parameter-changed-description: valor del parámetro de tipo de medio de respuesta cambiado
 response-media-type-name-changed-warning-comment: "Esta es una advertencia porque oasdiff no puede saber qué restringe el parámetro de tipo de medio modificado. Añadir uno restringe lo que el servidor puede devolver, eliminarlo lo amplía, y cambiar su valor puede dejar a un cliente sin poder leer la respuesta."
 response-media-type-name-generalized: el tipo de media %s fue cambiado a un tipo de media más general %s para el estado de respuesta %s
 response-media-type-name-specialized: el tipo de media %s fue cambiado a un tipo de media más específico %s para el estado de respuesta %s
@@ -355,6 +361,8 @@ request-property-all-of-removed: "%s fue removido de la lista `allOf` de la prop
 response-body-all-of-added: "%s fue agregado a la lista `allOf` del cuerpo de respuesta para el estado %s"
 response-body-all-of-removed: "%s fue removido de la lista `allOf` del cuerpo de respuesta para el estado %s"
 all-of-not-flattened-comment: "Esto comparó las ramas de `allOf` una por una, así que otra rama todavía puede garantizar lo que esta perdió. Ejecute con --flatten-allof para fusionar las ramas y comparar lo que describen en conjunto."
+read-only-comment: "La propiedad es de solo lectura, por lo que nunca aparece en las solicitudes y este cambio no puede invalidar ninguna."
+write-only-comment: "La propiedad es de solo escritura, por lo que nunca aparece en las respuestas y este cambio no puede invalidar ninguna."
 response-property-all-of-added: "%s fue agregado a la lista `allOf` de la propiedad de respuesta %s para el estado %s"
 response-property-all-of-removed: "%s fue removido de la lista `allOf` de la propiedad de respuesta %s para el estado %s"
 response-body-discriminator-added: agregado discriminador de respuesta para el estado %s

@@ -86,9 +86,7 @@ request-parameter-max-length-increased: no parâmetro de requisição do tipo %s
 request-parameter-min-length-increased: no parâmetro de requisição do tipo %s e nome %s teve seu comprimento mínimo aumentado de %s para %s
 request-parameter-min-length-decreased: no parâmetro de requisição do tipo %s e nome %s teve seu comprimento mínimo reduzido de %s para %s
 request-parameter-max-length-set: no parâmetro de requisição do tipo %s e nome %s, o comprimento máximo foi definido como %s
-request-parameter-max-length-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-parameter-max-set: no parâmetro de requisição do tipo %s e nome %s, o valor máximo foi definido como %s
-request-parameter-max-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-parameter-min-increased: no parâmetro de requisição do tipo %s e nome %s, o valor mínimo foi aumentado de %s para %s
 request-parameter-min-decreased: no parâmetro de requisição do tipo %s e nome %s, o valor mínimo foi reduzido de %s para %s
 request-parameter-max-items-decreased: no parâmetro de requisição do tipo %s e nome %s, o número máximo de itens foi reduzido de %s para %s
@@ -96,9 +94,7 @@ request-parameter-max-items-increased: no parâmetro de requisição do tipo %s 
 request-parameter-min-items-increased: no parâmetro de requisição do tipo %s e nome %s, o número mínimo de itens foi aumentado de %s para %s
 request-parameter-min-items-decreased: no parâmetro de requisição do tipo %s e nome %s, o número mínimo de itens foi reduzido de %s para %s
 request-parameter-min-items-set: no parâmetro de requisição do tipo %s e nome %s, o número mínimo de itens foi definido como %s
-request-parameter-min-items-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-parameter-min-set: no parâmetro de requisição do tipo %s e nome %s, o valor mínimo foi definido como %s
-request-parameter-min-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-parameter-type-changed: no parâmetro de requisição do tipo %s e nome %s, o %s foi alterado de %s para %s
 request-parameter-type-generalized: no parâmetro de requisição do tipo %s e nome %s, o %s foi expandido de %s para %s
 request-parameter-property-type-changed: no parâmetro de requisição do tipo %s e nome %s, o %s da propriedade %s foi alterado de %s para %s
@@ -145,13 +141,9 @@ request-property-max-increased: o valor máximo da propriedade de requisição %
 request-body-max-length-increased: o comprimento máximo do corpo da requisição foi aumentado de %s para %s
 request-property-max-length-increased: o comprimento máximo da propriedade de requisição %s foi aumentado de %s para %s
 request-body-max-length-set: o comprimento máximo do corpo da requisição foi definido como %s
-request-body-max-length-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-max-length-set: o comprimento máximo da propriedade de requisição %s foi definido como %s
-request-property-max-length-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-body-max-set: o valor máximo do corpo da requisição foi definido como %s
-request-body-max-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-max-set: o valor máximo da propriedade de requisição %s foi definido como %s
-request-property-max-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-body-min-increased: o valor mínimo do corpo da requisição foi aumentado para %s
 request-property-min-increased: o valor mínimo da propriedade de requisição %s foi aumentado para %s
 request-read-only-property-min-increased: o valor mínimo da propriedade de requisição somente leitura %s foi aumentado para %s
@@ -162,13 +154,9 @@ request-property-min-decreased: o valor mínimo da propriedade de requisição %
 request-body-min-items-decreased: o número mínimo de itens do corpo da requisição foi reduzido de %s para %s
 request-property-min-items-decreased: o número mínimo de itens da propriedade de requisição %s foi reduzido de %s para %s
 request-body-min-items-set: o número mínimo de itens do corpo da requisição foi definido como %s
-request-body-min-items-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-min-items-set: o número mínimo de itens da propriedade de requisição %s foi definido como %s
-request-property-min-items-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-body-min-set: o valor mínimo do corpo da requisição foi definido como %s
-request-body-min-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-min-set: o valor mínimo da propriedade de requisição %s foi definido como %s
-request-property-min-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-removed: a propriedade de requisição %s foi removida
 request-body-type-changed: o %s do corpo da requisição foi alterado de %s para %s
 request-body-type-generalized: o %s do corpo da requisição foi expandido de %s para %s
@@ -240,26 +228,20 @@ request-property-exclusive-min-increased: o valor exclusiveMinimum da propriedad
 request-read-only-property-exclusive-min-increased: o valor exclusiveMinimum da propriedade de requisição somente leitura %s foi aumentado para %s
 request-property-exclusive-min-decreased: o valor exclusiveMinimum da propriedade de requisição %s foi reduzido de %s para %s
 request-body-exclusive-min-set: o valor exclusiveMinimum do corpo da requisição foi definido como %s
-request-body-exclusive-min-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-exclusive-min-set: o valor exclusiveMinimum da propriedade de requisição %s foi definido como %s
-request-property-exclusive-min-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-body-exclusive-max-decreased: o valor exclusiveMaximum do corpo da requisição foi reduzido para %s
 request-body-exclusive-max-increased: o valor exclusiveMaximum do corpo da requisição foi aumentado de %s para %s
 request-property-exclusive-max-decreased: o valor exclusiveMaximum da propriedade de requisição %s foi reduzido para %s
 request-read-only-property-exclusive-max-decreased: o valor exclusiveMaximum da propriedade de requisição somente leitura %s foi reduzido para %s
 request-property-exclusive-max-increased: o valor exclusiveMaximum da propriedade de requisição %s foi aumentado de %s para %s
 request-body-exclusive-max-set: o valor exclusiveMaximum do corpo da requisição foi definido como %s
-request-body-exclusive-max-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-exclusive-max-set: o valor exclusiveMaximum da propriedade de requisição %s foi definido como %s
-request-property-exclusive-max-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-parameter-exclusive-min-increased: no parâmetro de requisição do tipo %s e nome %s, o valor exclusiveMinimum foi aumentado de %s para %s
 request-parameter-exclusive-min-decreased: no parâmetro de requisição do tipo %s e nome %s, o valor exclusiveMinimum foi reduzido de %s para %s
 request-parameter-exclusive-min-set: no parâmetro de requisição do tipo %s e nome %s, o valor exclusiveMinimum foi definido como %s
-request-parameter-exclusive-min-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-parameter-exclusive-max-decreased: no parâmetro de requisição do tipo %s e nome %s teve seu valor exclusiveMaximum foi reduzido de %s para %s
 request-parameter-exclusive-max-increased: no parâmetro de requisição do tipo %s e nome %s teve seu valor exclusiveMaximum foi aumentado de %s para %s
 request-parameter-exclusive-max-set: no parâmetro de requisição do tipo %s e nome %s, o valor exclusiveMaximum foi definido como %s
-request-parameter-exclusive-max-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 response-body-exclusive-max-increased: o valor exclusiveMaximum do corpo da resposta foi aumentado de %s para %s
 response-property-exclusive-max-increased: o valor exclusiveMaximum da propriedade de resposta %s foi aumentado de %s para %s para o status %s
 response-body-exclusive-min-decreased: o valor exclusiveMinimum do corpo da resposta foi reduzido de %s para %s
@@ -1094,9 +1076,7 @@ request-read-only-property-max-items-decreased: o número máximo de itens da pr
 request-body-max-items-increased: o número máximo de itens do corpo da requisição foi aumentado de %s para %s
 request-property-max-items-increased: o número máximo de itens da propriedade de requisição %s foi aumentado de %s para %s
 request-body-max-items-set: o número máximo de itens do corpo da requisição foi definido como %s
-request-body-max-items-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-max-items-set: o número máximo de itens da propriedade de requisição %s foi definido como %s
-request-property-max-items-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 response-body-max-items-increased: o número máximo de itens do corpo da resposta foi aumentado de %s para %s
 response-property-max-items-increased: o número máximo de itens da propriedade de resposta %s foi aumentado de %s para %s para o status %s
 request-body-max-properties-decreased: o número máximo de propriedades do corpo da requisição foi reduzido para %s
@@ -1105,9 +1085,7 @@ request-read-only-property-max-properties-decreased: o número máximo de propri
 request-body-max-properties-increased: o número máximo de propriedades do corpo da requisição foi aumentado de %s para %s
 request-property-max-properties-increased: o número máximo de propriedades da propriedade de requisição %s foi aumentado de %s para %s
 request-body-max-properties-set: o número máximo de propriedades do corpo da requisição foi definido como %s
-request-body-max-properties-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-max-properties-set: o número máximo de propriedades da propriedade de requisição %s foi definido como %s
-request-property-max-properties-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 response-body-max-properties-increased: o número máximo de propriedades do corpo da resposta foi aumentado de %s para %s
 response-property-max-properties-increased: o número máximo de propriedades da propriedade de resposta %s foi aumentado de %s para %s para o status %s
 request-body-min-properties-increased: o número mínimo de propriedades do corpo da requisição foi aumentado para %s
@@ -1121,9 +1099,7 @@ request-property-unique-items-unset: o valor uniqueItems da propriedade de requi
 response-body-unique-items-unset: o valor uniqueItems do corpo da resposta foi removido
 response-property-unique-items-unset: o valor uniqueItems da propriedade de resposta %s foi removido para o status %s
 request-body-multiple-of-set: o valor multipleOf do corpo da requisição foi definido como %s
-request-body-multiple-of-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-property-multiple-of-set: o valor multipleOf da propriedade de requisição %s foi definido como %s
-request-property-multiple-of-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
 request-body-multiple-of-unset: o valor multipleOf do corpo da requisição foi removido de %s
 request-property-multiple-of-unset: o valor multipleOf da propriedade de requisição %s foi removido de %s
 request-body-multiple-of-changed: o valor multipleOf do corpo da requisição foi alterado de %s para %s
@@ -1212,3 +1188,218 @@ request-parameter-property-schema-became-false-description: "request parameter p
 request-parameter-property-schema-became-not-false-description: "request parameter property schema is no longer the boolean `false`"
 response-header-schema-became-false-description: "response header schema became the boolean `false`"
 response-header-schema-became-not-false-description: "response header schema is no longer the boolean `false`"
+bound-set-comment: Definir um limite rejeita valores que o contrato anterior aceitava. Se seus clientes comprovadamente respeitam o novo limite, reduza a severidade desta verificação com --severity-levels.
+
+# generated bound-rule messages: edit the templates in checker/bound_messages_test.go and run 'make bound-messages'; do not edit these entries by hand
+request-body-max-contains-set: o valor maxContains do corpo da requisição foi definido como %s
+request-body-max-contains-set-description: valor maxContains do corpo da requisição definido
+request-body-max-contains-unset: o valor maxContains do corpo da requisição foi removido de %s
+request-body-max-contains-unset-description: valor maxContains do corpo da requisição removido
+request-body-max-items-unset: o valor maxItems do corpo da requisição foi removido de %s
+request-body-max-items-unset-description: valor maxItems do corpo da requisição removido
+request-body-max-length-unset: o valor maxLength do corpo da requisição foi removido de %s
+request-body-max-length-unset-description: valor maxLength do corpo da requisição removido
+request-body-max-properties-unset: o valor maxProperties do corpo da requisição foi removido de %s
+request-body-max-properties-unset-description: valor maxProperties do corpo da requisição removido
+request-body-max-unset: o valor max do corpo da requisição foi removido de %s
+request-body-max-unset-description: valor max do corpo da requisição removido
+request-body-min-contains-set: o valor minContains do corpo da requisição foi definido como %s
+request-body-min-contains-set-description: valor minContains do corpo da requisição definido
+request-body-min-contains-unset: o valor minContains do corpo da requisição foi removido de %s
+request-body-min-contains-unset-description: valor minContains do corpo da requisição removido
+request-body-min-items-unset: o valor minItems do corpo da requisição foi removido de %s
+request-body-min-items-unset-description: valor minItems do corpo da requisição removido
+request-body-min-length-set: o valor minLength do corpo da requisição foi definido como %s
+request-body-min-length-set-description: valor minLength do corpo da requisição definido
+request-body-min-length-unset: o valor minLength do corpo da requisição foi removido de %s
+request-body-min-length-unset-description: valor minLength do corpo da requisição removido
+request-body-min-properties-set: o valor minProperties do corpo da requisição foi definido como %s
+request-body-min-properties-set-description: valor minProperties do corpo da requisição definido
+request-body-min-properties-unset: o valor minProperties do corpo da requisição foi removido de %s
+request-body-min-properties-unset-description: valor minProperties do corpo da requisição removido
+request-body-min-unset: o valor min do corpo da requisição foi removido de %s
+request-body-min-unset-description: valor min do corpo da requisição removido
+request-parameter-max-contains-set: no parâmetro de requisição do tipo %s e nome %s, o valor maxContains foi definido como %s
+request-parameter-max-contains-set-description: valor maxContains do parâmetro da requisição definido
+request-parameter-max-contains-unset: no parâmetro de requisição do tipo %s e nome %s, o valor maxContains foi removido de %s
+request-parameter-max-contains-unset-description: valor maxContains do parâmetro da requisição removido
+request-parameter-max-items-set: no parâmetro de requisição do tipo %s e nome %s, o valor maxItems foi definido como %s
+request-parameter-max-items-set-description: valor maxItems do parâmetro da requisição definido
+request-parameter-max-items-unset: no parâmetro de requisição do tipo %s e nome %s, o valor maxItems foi removido de %s
+request-parameter-max-items-unset-description: valor maxItems do parâmetro da requisição removido
+request-parameter-max-length-unset: no parâmetro de requisição do tipo %s e nome %s, o valor maxLength foi removido de %s
+request-parameter-max-length-unset-description: valor maxLength do parâmetro da requisição removido
+request-parameter-max-properties-set: no parâmetro de requisição do tipo %s e nome %s, o valor maxProperties foi definido como %s
+request-parameter-max-properties-set-description: valor maxProperties do parâmetro da requisição definido
+request-parameter-max-properties-unset: no parâmetro de requisição do tipo %s e nome %s, o valor maxProperties foi removido de %s
+request-parameter-max-properties-unset-description: valor maxProperties do parâmetro da requisição removido
+request-parameter-max-unset: no parâmetro de requisição do tipo %s e nome %s, o valor max foi removido de %s
+request-parameter-max-unset-description: valor max do parâmetro da requisição removido
+request-parameter-min-contains-set: no parâmetro de requisição do tipo %s e nome %s, o valor minContains foi definido como %s
+request-parameter-min-contains-set-description: valor minContains do parâmetro da requisição definido
+request-parameter-min-contains-unset: no parâmetro de requisição do tipo %s e nome %s, o valor minContains foi removido de %s
+request-parameter-min-contains-unset-description: valor minContains do parâmetro da requisição removido
+request-parameter-min-items-unset: no parâmetro de requisição do tipo %s e nome %s, o valor minItems foi removido de %s
+request-parameter-min-items-unset-description: valor minItems do parâmetro da requisição removido
+request-parameter-min-length-set: no parâmetro de requisição do tipo %s e nome %s, o valor minLength foi definido como %s
+request-parameter-min-length-set-description: valor minLength do parâmetro da requisição definido
+request-parameter-min-length-unset: no parâmetro de requisição do tipo %s e nome %s, o valor minLength foi removido de %s
+request-parameter-min-length-unset-description: valor minLength do parâmetro da requisição removido
+request-parameter-min-properties-set: no parâmetro de requisição do tipo %s e nome %s, o valor minProperties foi definido como %s
+request-parameter-min-properties-set-description: valor minProperties do parâmetro da requisição definido
+request-parameter-min-properties-unset: no parâmetro de requisição do tipo %s e nome %s, o valor minProperties foi removido de %s
+request-parameter-min-properties-unset-description: valor minProperties do parâmetro da requisição removido
+request-parameter-min-unset: no parâmetro de requisição do tipo %s e nome %s, o valor min foi removido de %s
+request-parameter-min-unset-description: valor min do parâmetro da requisição removido
+request-parameter-multiple-of-set: no parâmetro de requisição do tipo %s e nome %s, o valor multipleOf foi definido como %s
+request-parameter-multiple-of-set-description: valor multipleOf do parâmetro da requisição definido
+request-parameter-multiple-of-unset: no parâmetro de requisição do tipo %s e nome %s, o valor multipleOf foi removido de %s
+request-parameter-multiple-of-unset-description: valor multipleOf do parâmetro da requisição removido
+request-property-max-contains-set: o valor maxContains da propriedade de requisição %s foi definido como %s
+request-property-max-contains-set-description: valor maxContains da propriedade de requisição definido
+request-property-max-contains-unset: o valor maxContains da propriedade de requisição %s foi removido de %s
+request-property-max-contains-unset-description: valor maxContains da propriedade de requisição removido
+request-property-max-items-unset: o valor maxItems da propriedade de requisição %s foi removido de %s
+request-property-max-items-unset-description: valor maxItems da propriedade de requisição removido
+request-property-max-length-unset: o valor maxLength da propriedade de requisição %s foi removido de %s
+request-property-max-length-unset-description: valor maxLength da propriedade de requisição removido
+request-property-max-properties-unset: o valor maxProperties da propriedade de requisição %s foi removido de %s
+request-property-max-properties-unset-description: valor maxProperties da propriedade de requisição removido
+request-property-max-unset: o valor max da propriedade de requisição %s foi removido de %s
+request-property-max-unset-description: valor max da propriedade de requisição removido
+request-property-min-contains-set: o valor minContains da propriedade de requisição %s foi definido como %s
+request-property-min-contains-set-description: valor minContains da propriedade de requisição definido
+request-property-min-contains-unset: o valor minContains da propriedade de requisição %s foi removido de %s
+request-property-min-contains-unset-description: valor minContains da propriedade de requisição removido
+request-property-min-items-unset: o valor minItems da propriedade de requisição %s foi removido de %s
+request-property-min-items-unset-description: valor minItems da propriedade de requisição removido
+request-property-min-length-set: o valor minLength da propriedade de requisição %s foi definido como %s
+request-property-min-length-set-description: valor minLength da propriedade de requisição definido
+request-property-min-length-unset: o valor minLength da propriedade de requisição %s foi removido de %s
+request-property-min-length-unset-description: valor minLength da propriedade de requisição removido
+request-property-min-properties-set: o valor minProperties da propriedade de requisição %s foi definido como %s
+request-property-min-properties-set-description: valor minProperties da propriedade de requisição definido
+request-property-min-properties-unset: o valor minProperties da propriedade de requisição %s foi removido de %s
+request-property-min-properties-unset-description: valor minProperties da propriedade de requisição removido
+request-property-min-unset: o valor min da propriedade de requisição %s foi removido de %s
+request-property-min-unset-description: valor min da propriedade de requisição removido
+response-body-max-contains-set: o valor maxContains do corpo da resposta foi definido como %s
+response-body-max-contains-set-description: valor maxContains do corpo da resposta definido
+response-body-max-contains-unset: o valor maxContains do corpo da resposta foi removido de %s
+response-body-max-contains-unset-description: valor maxContains do corpo da resposta removido
+response-body-max-items-set: o valor maxItems do corpo da resposta foi definido como %s
+response-body-max-items-set-description: valor maxItems do corpo da resposta definido
+response-body-max-items-unset: o valor maxItems do corpo da resposta foi removido de %s
+response-body-max-items-unset-description: valor maxItems do corpo da resposta removido
+response-body-max-length-set: o valor maxLength do corpo da resposta foi definido como %s
+response-body-max-length-set-description: valor maxLength do corpo da resposta definido
+response-body-max-properties-set: o valor maxProperties do corpo da resposta foi definido como %s
+response-body-max-properties-set-description: valor maxProperties do corpo da resposta definido
+response-body-max-properties-unset: o valor maxProperties do corpo da resposta foi removido de %s
+response-body-max-properties-unset-description: valor maxProperties do corpo da resposta removido
+response-body-max-set: o valor max do corpo da resposta foi definido como %s
+response-body-max-set-description: valor max do corpo da resposta definido
+response-body-max-unset: o valor max do corpo da resposta foi removido de %s
+response-body-max-unset-description: valor max do corpo da resposta removido
+response-body-min-contains-set: o valor minContains do corpo da resposta foi definido como %s
+response-body-min-contains-set-description: valor minContains do corpo da resposta definido
+response-body-min-contains-unset: o valor minContains do corpo da resposta foi removido de %s
+response-body-min-contains-unset-description: valor minContains do corpo da resposta removido
+response-body-min-items-set: o valor minItems do corpo da resposta foi definido como %s
+response-body-min-items-set-description: valor minItems do corpo da resposta definido
+response-body-min-length-set: o valor minLength do corpo da resposta foi definido como %s
+response-body-min-length-set-description: valor minLength do corpo da resposta definido
+response-body-min-length-unset: o valor minLength do corpo da resposta foi removido de %s
+response-body-min-length-unset-description: valor minLength do corpo da resposta removido
+response-body-min-properties-set: o valor minProperties do corpo da resposta foi definido como %s
+response-body-min-properties-set-description: valor minProperties do corpo da resposta definido
+response-body-min-properties-unset: o valor minProperties do corpo da resposta foi removido de %s
+response-body-min-properties-unset-description: valor minProperties do corpo da resposta removido
+response-body-min-set: o valor min do corpo da resposta foi definido como %s
+response-body-min-set-description: valor min do corpo da resposta definido
+response-body-min-unset: o valor min do corpo da resposta foi removido de %s
+response-body-min-unset-description: valor min do corpo da resposta removido
+response-body-multiple-of-set: o valor multipleOf do corpo da resposta foi definido como %s
+response-body-multiple-of-set-description: valor multipleOf do corpo da resposta definido
+response-header-max-contains-set: o valor maxContains do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-max-contains-set-description: valor maxContains do cabeçalho de resposta definido
+response-header-max-contains-unset: o valor maxContains do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-max-contains-unset-description: valor maxContains do cabeçalho de resposta removido
+response-header-max-items-set: o valor maxItems do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-max-items-set-description: valor maxItems do cabeçalho de resposta definido
+response-header-max-items-unset: o valor maxItems do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-max-items-unset-description: valor maxItems do cabeçalho de resposta removido
+response-header-max-length-set: o valor maxLength do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-max-length-set-description: valor maxLength do cabeçalho de resposta definido
+response-header-max-length-unset: o valor maxLength do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-max-length-unset-description: valor maxLength do cabeçalho de resposta removido
+response-header-max-properties-set: o valor maxProperties do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-max-properties-set-description: valor maxProperties do cabeçalho de resposta definido
+response-header-max-properties-unset: o valor maxProperties do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-max-properties-unset-description: valor maxProperties do cabeçalho de resposta removido
+response-header-max-set: o valor max do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-max-set-description: valor max do cabeçalho de resposta definido
+response-header-max-unset: o valor max do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-max-unset-description: valor max do cabeçalho de resposta removido
+response-header-min-contains-set: o valor minContains do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-min-contains-set-description: valor minContains do cabeçalho de resposta definido
+response-header-min-contains-unset: o valor minContains do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-min-contains-unset-description: valor minContains do cabeçalho de resposta removido
+response-header-min-items-set: o valor minItems do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-min-items-set-description: valor minItems do cabeçalho de resposta definido
+response-header-min-items-unset: o valor minItems do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-min-items-unset-description: valor minItems do cabeçalho de resposta removido
+response-header-min-length-set: o valor minLength do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-min-length-set-description: valor minLength do cabeçalho de resposta definido
+response-header-min-length-unset: o valor minLength do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-min-length-unset-description: valor minLength do cabeçalho de resposta removido
+response-header-min-properties-set: o valor minProperties do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-min-properties-set-description: valor minProperties do cabeçalho de resposta definido
+response-header-min-properties-unset: o valor minProperties do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-min-properties-unset-description: valor minProperties do cabeçalho de resposta removido
+response-header-min-set: o valor min do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-min-set-description: valor min do cabeçalho de resposta definido
+response-header-min-unset: o valor min do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-min-unset-description: valor min do cabeçalho de resposta removido
+response-header-multiple-of-set: o valor multipleOf do cabeçalho de resposta %s foi definido como %s para o status %s
+response-header-multiple-of-set-description: valor multipleOf do cabeçalho de resposta definido
+response-header-multiple-of-unset: o valor multipleOf do cabeçalho de resposta %s foi removido de %s para o status %s
+response-header-multiple-of-unset-description: valor multipleOf do cabeçalho de resposta removido
+response-property-max-contains-set: o valor maxContains da propriedade de resposta %s foi definido como %s para o status %s
+response-property-max-contains-set-description: valor maxContains da propriedade de resposta definido
+response-property-max-contains-unset: o valor maxContains da propriedade de resposta %s foi removido de %s para o status %s
+response-property-max-contains-unset-description: valor maxContains da propriedade de resposta removido
+response-property-max-items-set: o valor maxItems da propriedade de resposta %s foi definido como %s para o status %s
+response-property-max-items-set-description: valor maxItems da propriedade de resposta definido
+response-property-max-items-unset: o valor maxItems da propriedade de resposta %s foi removido de %s para o status %s
+response-property-max-items-unset-description: valor maxItems da propriedade de resposta removido
+response-property-max-length-set: o valor maxLength da propriedade de resposta %s foi definido como %s para o status %s
+response-property-max-length-set-description: valor maxLength da propriedade de resposta definido
+response-property-max-properties-set: o valor maxProperties da propriedade de resposta %s foi definido como %s para o status %s
+response-property-max-properties-set-description: valor maxProperties da propriedade de resposta definido
+response-property-max-properties-unset: o valor maxProperties da propriedade de resposta %s foi removido de %s para o status %s
+response-property-max-properties-unset-description: valor maxProperties da propriedade de resposta removido
+response-property-max-set: o valor max da propriedade de resposta %s foi definido como %s para o status %s
+response-property-max-set-description: valor max da propriedade de resposta definido
+response-property-max-unset: o valor max da propriedade de resposta %s foi removido de %s para o status %s
+response-property-max-unset-description: valor max da propriedade de resposta removido
+response-property-min-contains-set: o valor minContains da propriedade de resposta %s foi definido como %s para o status %s
+response-property-min-contains-set-description: valor minContains da propriedade de resposta definido
+response-property-min-contains-unset: o valor minContains da propriedade de resposta %s foi removido de %s para o status %s
+response-property-min-contains-unset-description: valor minContains da propriedade de resposta removido
+response-property-min-items-set: o valor minItems da propriedade de resposta %s foi definido como %s para o status %s
+response-property-min-items-set-description: valor minItems da propriedade de resposta definido
+response-property-min-length-set: o valor minLength da propriedade de resposta %s foi definido como %s para o status %s
+response-property-min-length-set-description: valor minLength da propriedade de resposta definido
+response-property-min-length-unset: o valor minLength da propriedade de resposta %s foi removido de %s para o status %s
+response-property-min-length-unset-description: valor minLength da propriedade de resposta removido
+response-property-min-properties-set: o valor minProperties da propriedade de resposta %s foi definido como %s para o status %s
+response-property-min-properties-set-description: valor minProperties da propriedade de resposta definido
+response-property-min-properties-unset: o valor minProperties da propriedade de resposta %s foi removido de %s para o status %s
+response-property-min-properties-unset-description: valor minProperties da propriedade de resposta removido
+response-property-min-set: o valor min da propriedade de resposta %s foi definido como %s para o status %s
+response-property-min-set-description: valor min da propriedade de resposta definido
+response-property-min-unset: o valor min da propriedade de resposta %s foi removido de %s para o status %s
+response-property-min-unset-description: valor min da propriedade de resposta removido
+response-property-multiple-of-set: o valor multipleOf da propriedade de resposta %s foi definido como %s para o status %s
+response-property-multiple-of-set-description: valor multipleOf da propriedade de resposta definido

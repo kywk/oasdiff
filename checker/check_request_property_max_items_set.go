@@ -19,7 +19,7 @@ func RequestPropertyMaxItemsSetCheck(diffReport *diff.Diff, operationsSources *d
 			result = append(result, info.newChange(
 				RequestBodyMaxItemsSetId,
 				[]any{maxItemsDiff.To},
-				commentId(RequestBodyMaxItemsSetId),
+				boundSetComment,
 			).WithSources(nil, revisionSource))
 		}
 
@@ -28,15 +28,12 @@ func RequestPropertyMaxItemsSetCheck(diffReport *diff.Diff, operationsSources *d
 			if maxItemsDiff == nil || maxItemsDiff.From != nil || maxItemsDiff.To == nil {
 				return
 			}
-			if p.propertyDiff.Revision.ReadOnly {
-				return
-			}
 
 			_, propRevisionSource := SchemaFieldSources(operationsSources, info.operationItem, p.propertyDiff, "maxItems")
 			result = append(result, p.newChange(
 				RequestPropertyMaxItemsSetId,
 				[]any{propertyFullName(p.propertyPath, p.propertyName), maxItemsDiff.To},
-				commentId(RequestPropertyMaxItemsSetId),
+				boundSetComment,
 			).WithSources(nil, propRevisionSource))
 		})
 	})

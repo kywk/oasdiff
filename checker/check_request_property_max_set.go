@@ -15,14 +15,14 @@ func RequestPropertyMaxSetCheck(diffReport *diff.Diff, operationsSources *diff.O
 	result := make(Changes, 0)
 
 	walkModifiedRequestBodySchemas(diffReport, operationsSources, config, func(info mediaTypeInfo) {
-		_, revisionSource := SchemaFieldSources(operationsSources, info.operationItem, info.schemaDiff, "maximum")
 		if maxDiff := info.schemaDiff.MaxDiff; maxDiff != nil &&
 			maxDiff.From == nil &&
 			maxDiff.To != nil {
+			_, revisionSource := SchemaFieldSources(operationsSources, info.operationItem, info.schemaDiff, "maximum")
 			result = append(result, info.newChange(
 				RequestBodyMaxSetId,
 				[]any{maxDiff.To},
-				commentId(RequestBodyMaxSetId),
+				boundSetComment,
 			).WithSources(nil, revisionSource))
 		}
 		if exMaxDiff := info.schemaDiff.ExclusiveMaxDiff; exMaxDiff != nil &&
@@ -32,14 +32,11 @@ func RequestPropertyMaxSetCheck(diffReport *diff.Diff, operationsSources *diff.O
 			result = append(result, info.newChange(
 				RequestBodyExclusiveMaxSetId,
 				[]any{exMaxDiff.To},
-				commentId(RequestBodyExclusiveMaxSetId),
+				boundSetComment,
 			).WithSources(nil, exRevisionSource))
 		}
 
 		info.walkProperties(func(p propertyInfo) {
-			if p.propertyDiff.Revision.ReadOnly {
-				return
-			}
 			propName := propertyFullName(p.propertyPath, p.propertyName)
 
 			if maxDiff := p.propertyDiff.MaxDiff; maxDiff != nil &&
@@ -49,7 +46,7 @@ func RequestPropertyMaxSetCheck(diffReport *diff.Diff, operationsSources *diff.O
 				result = append(result, p.newChange(
 					RequestPropertyMaxSetId,
 					[]any{propName, maxDiff.To},
-					commentId(RequestPropertyMaxSetId),
+					boundSetComment,
 				).WithSources(nil, propRevisionSource))
 			}
 
@@ -60,7 +57,7 @@ func RequestPropertyMaxSetCheck(diffReport *diff.Diff, operationsSources *diff.O
 				result = append(result, p.newChange(
 					RequestPropertyExclusiveMaxSetId,
 					[]any{propName, exMaxDiff.To},
-					commentId(RequestPropertyExclusiveMaxSetId),
+					boundSetComment,
 				).WithSources(nil, propRevisionSource))
 			}
 		})

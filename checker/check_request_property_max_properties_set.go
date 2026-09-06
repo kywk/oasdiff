@@ -19,7 +19,7 @@ func RequestPropertyMaxPropertiesSetCheck(diffReport *diff.Diff, operationsSourc
 			result = append(result, info.newChange(
 				RequestBodyMaxPropertiesSetId,
 				[]any{maxPropertiesDiff.To},
-				commentId(RequestBodyMaxPropertiesSetId),
+				boundSetComment,
 			).WithSources(nil, revisionSource))
 		}
 
@@ -28,15 +28,12 @@ func RequestPropertyMaxPropertiesSetCheck(diffReport *diff.Diff, operationsSourc
 			if maxPropertiesDiff == nil || maxPropertiesDiff.From != nil || maxPropertiesDiff.To == nil {
 				return
 			}
-			if p.propertyDiff.Revision.ReadOnly {
-				return
-			}
 
 			_, propRevisionSource := SchemaFieldSources(operationsSources, info.operationItem, p.propertyDiff, "maxProperties")
 			result = append(result, p.newChange(
 				RequestPropertyMaxPropertiesSetId,
 				[]any{propertyFullName(p.propertyPath, p.propertyName), maxPropertiesDiff.To},
-				commentId(RequestPropertyMaxPropertiesSetId),
+				boundSetComment,
 			).WithSources(nil, propRevisionSource))
 		})
 	})

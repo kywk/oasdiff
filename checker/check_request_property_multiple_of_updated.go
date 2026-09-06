@@ -46,7 +46,7 @@ func RequestPropertyMultipleOfUpdatedCheck(diffReport *diff.Diff, operationsSour
 				result = append(result, info.newChange(
 					RequestBodyMultipleOfSetId,
 					[]any{multipleOfDiff.To},
-					commentId(RequestBodyMultipleOfSetId),
+					boundSetComment,
 				).WithSources(nil, revisionSource))
 			case multipleOfDiff.To == nil:
 				result = append(result, info.newChange(
@@ -74,10 +74,6 @@ func RequestPropertyMultipleOfUpdatedCheck(diffReport *diff.Diff, operationsSour
 			if multipleOfDiff == nil {
 				return
 			}
-			// narrowing a read-only property does not affect requests
-			if p.propertyDiff.Revision.ReadOnly && multipleOfDiff.To != nil {
-				return
-			}
 
 			propName := propertyFullName(p.propertyPath, p.propertyName)
 			propBaseSource, propRevisionSource := SchemaFieldSources(operationsSources, info.operationItem, p.propertyDiff, "multipleOf")
@@ -86,7 +82,7 @@ func RequestPropertyMultipleOfUpdatedCheck(diffReport *diff.Diff, operationsSour
 				result = append(result, p.newChange(
 					RequestPropertyMultipleOfSetId,
 					[]any{propName, multipleOfDiff.To},
-					commentId(RequestPropertyMultipleOfSetId),
+					boundSetComment,
 				).WithSources(nil, propRevisionSource))
 			case multipleOfDiff.To == nil:
 				result = append(result, p.newChange(

@@ -15,14 +15,14 @@ func RequestPropertyMinSetCheck(diffReport *diff.Diff, operationsSources *diff.O
 	result := make(Changes, 0)
 
 	walkModifiedRequestBodySchemas(diffReport, operationsSources, config, func(info mediaTypeInfo) {
-		_, revisionSource := SchemaFieldSources(operationsSources, info.operationItem, info.schemaDiff, "minimum")
 		if minDiff := info.schemaDiff.MinDiff; minDiff != nil &&
 			minDiff.From == nil &&
 			minDiff.To != nil {
+			_, revisionSource := SchemaFieldSources(operationsSources, info.operationItem, info.schemaDiff, "minimum")
 			result = append(result, info.newChange(
 				RequestBodyMinSetId,
 				[]any{minDiff.To},
-				commentId(RequestBodyMinSetId),
+				boundSetComment,
 			).WithSources(nil, revisionSource))
 		}
 		if exMinDiff := info.schemaDiff.ExclusiveMinDiff; exMinDiff != nil &&
@@ -32,14 +32,11 @@ func RequestPropertyMinSetCheck(diffReport *diff.Diff, operationsSources *diff.O
 			result = append(result, info.newChange(
 				RequestBodyExclusiveMinSetId,
 				[]any{exMinDiff.To},
-				commentId(RequestBodyExclusiveMinSetId),
+				boundSetComment,
 			).WithSources(nil, exRevisionSource))
 		}
 
 		info.walkProperties(func(p propertyInfo) {
-			if p.propertyDiff.Revision.ReadOnly {
-				return
-			}
 			propName := propertyFullName(p.propertyPath, p.propertyName)
 
 			if minDiff := p.propertyDiff.MinDiff; minDiff != nil &&
@@ -49,7 +46,7 @@ func RequestPropertyMinSetCheck(diffReport *diff.Diff, operationsSources *diff.O
 				result = append(result, p.newChange(
 					RequestPropertyMinSetId,
 					[]any{propName, minDiff.To},
-					commentId(RequestPropertyMinSetId),
+					boundSetComment,
 				).WithSources(nil, propRevisionSource))
 			}
 
@@ -60,7 +57,7 @@ func RequestPropertyMinSetCheck(diffReport *diff.Diff, operationsSources *diff.O
 				result = append(result, p.newChange(
 					RequestPropertyExclusiveMinSetId,
 					[]any{propName, exMinDiff.To},
-					commentId(RequestPropertyExclusiveMinSetId),
+					boundSetComment,
 				).WithSources(nil, propRevisionSource))
 			}
 		})

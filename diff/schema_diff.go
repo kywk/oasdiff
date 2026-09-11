@@ -10,7 +10,6 @@ import (
 type SchemaDiff struct {
 	SchemaAdded                     bool                    `json:"schemaAdded,omitempty" yaml:"schemaAdded,omitempty"`
 	SchemaDeleted                   bool                    `json:"schemaDeleted,omitempty" yaml:"schemaDeleted,omitempty"`
-	CircularRefDiff                 bool                    `json:"circularRef,omitempty" yaml:"circularRef,omitempty"`
 	ExtensionsDiff                  *ExtensionsDiff         `json:"extensions,omitempty" yaml:"extensions,omitempty"`
 	OneOfDiff                       *SubschemasDiff         `json:"oneOf,omitempty" yaml:"oneOf,omitempty"`
 	AnyOfDiff                       *SubschemasDiff         `json:"anyOf,omitempty" yaml:"anyOf,omitempty"`
@@ -102,10 +101,31 @@ func (diff *SchemaDiff) Empty() bool {
 
 func getSchemaDiff(config *Config, state *state, schema1, schema2 *openapi3.SchemaRef) (*SchemaDiff, error) {
 
-	if diff, ok := state.cache.get(state.direction, schema1, schema2); ok {
+	if diff, ok := state.cache[schemaPair{schema1, schema2}]; ok {
 		return diff, nil
 	}
 
+	// A pair that is already being diffed further up the stack forms a
+	// cycle, whether it cycles through $refs or through in-memory links
+	// (e.g. --flatten-allof merging a recursive $ref into a ref-less
+	// self-referencing schema). Cut the cycle by reporting no diff at the
+	// re-entry point: the computation in progress reports every difference
+	// of the pair.
+	pair := schemaPair{schema1, schema2}
+	if _, ok := state.inFlight[pair]; ok {
+		// the no-diff answer stands in for the pair's computation already in
+		// progress; count the cut: a diff whose computation includes it is
+		// not cached
+		state.cuts++
+		return nil, nil
+	}
+	state.inFlight[pair] = struct{}{}
+	defer delete(state.inFlight, pair)
+
+	// a diff whose computation includes a cut depends on the path that led
+	// here, not on the pair alone; comparing the count detects a cut at any
+	// depth
+	cutsBefore := state.cuts
 	diff, err := getSchemaDiffInternal(config, state, schema1, schema2)
 	if err != nil {
 		return nil, err
@@ -115,7 +135,11 @@ func getSchemaDiff(config *Config, state *state, schema1, schema2 *openapi3.Sche
 		diff = nil
 	}
 
-	state.cache.add(state.direction, schema1, schema2, diff)
+	// no cut fired: the diff is a function of the pair alone and can be
+	// reused on any path
+	if state.cuts == cutsBefore {
+		state.cache[pair] = diff
+	}
 	return diff, nil
 }
 
@@ -142,27 +166,6 @@ func getSchemaDiffInternal(config *Config, state *state, schema1, schema2 *opena
 	result := SchemaDiff{
 		Base:     value1,
 		Revision: value2,
-	}
-
-	if status := getCircularRefsDiff(state.visitedSchemasBase, state.visitedSchemasRevision, schema1, schema2); status != circularRefStatusNone {
-		switch status {
-		case circularRefStatusDiff:
-			result.CircularRefDiff = true
-			return &result, nil
-		case circularRefStatusNoDiff:
-			return &result, nil
-		}
-	}
-
-	// mark visited schema references to avoid infinite loops
-	if schema1.Ref != "" {
-		state.visitedSchemasBase[schema1.Ref] = struct{}{}
-		defer delete(state.visitedSchemasBase, schema1.Ref)
-	}
-
-	if schema2.Ref != "" {
-		state.visitedSchemasRevision[schema2.Ref] = struct{}{}
-		defer delete(state.visitedSchemasRevision, schema2.Ref)
 	}
 
 	var err error

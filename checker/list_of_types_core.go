@@ -4,6 +4,8 @@ import (
 	"strings"
 
 	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/oasdiff/oasdiff/checker/location"
+	"github.com/oasdiff/oasdiff/checker/schemawalk"
 	"github.com/oasdiff/oasdiff/diff"
 )
 
@@ -29,23 +31,23 @@ func checkPropertyListOfTypesChange(opInfo opInfo, propertyPath string, property
 		// Request properties are contravariant: adding types = non-breaking, removing types = breaking
 		if len(listDiff.Deleted) > 0 {
 			messageId = RequestPropertyListOfTypesNarrowedId
-			args = []any{propertyFullName(propertyPath, propertyName), joinTypes(listDiff.Deleted), mediaType}
+			args = []any{schemawalk.PropertyFullName(propertyPath, propertyName), joinTypes(listDiff.Deleted), mediaType}
 		} else {
 			messageId = RequestPropertyListOfTypesWidenedId
-			args = []any{propertyFullName(propertyPath, propertyName), joinTypes(listDiff.Added), mediaType}
+			args = []any{schemawalk.PropertyFullName(propertyPath, propertyName), joinTypes(listDiff.Added), mediaType}
 		}
 	} else {
 		// Response properties are covariant: adding types = breaking, removing types = non-breaking
 		if len(listDiff.Added) > 0 {
 			messageId = ResponsePropertyListOfTypesWidenedId
-			args = []any{propertyFullName(propertyPath, propertyName), joinTypes(listDiff.Added), mediaType, responseStatus}
+			args = []any{schemawalk.PropertyFullName(propertyPath, propertyName), joinTypes(listDiff.Added), mediaType, responseStatus}
 		} else {
 			messageId = ResponsePropertyListOfTypesNarrowedId
-			args = []any{propertyFullName(propertyPath, propertyName), joinTypes(listDiff.Deleted), mediaType, responseStatus}
+			args = []any{schemawalk.PropertyFullName(propertyPath, propertyName), joinTypes(listDiff.Deleted), mediaType, responseStatus}
 		}
 	}
 
-	baseSource, revisionSource := SchemaFieldSources(opInfo.operationsSources, opInfo.methodDiff, propertyDiff, "type")
+	baseSource, revisionSource := location.SchemaFieldSources(opInfo.operationsSources, opInfo.methodDiff, propertyDiff, "type")
 	result = append(result, opInfo.NewApiChange(
 		messageId,
 		args,
@@ -91,7 +93,7 @@ func checkBodyListOfTypesChange(opInfo opInfo, schemaDiff *diff.SchemaDiff, medi
 		}
 	}
 
-	baseSource, revisionSource := SchemaFieldSources(opInfo.operationsSources, opInfo.methodDiff, schemaDiff, "type")
+	baseSource, revisionSource := location.SchemaFieldSources(opInfo.operationsSources, opInfo.methodDiff, schemaDiff, "type")
 	result = append(result, opInfo.NewApiChange(
 		messageId,
 		args,
@@ -124,7 +126,7 @@ func checkParameterListOfTypesChange(opInfo opInfo, paramDiff *diff.ParameterDif
 		args = []any{param.In, param.Name, joinTypes(listDiff.Added)}
 	}
 
-	baseSource, revisionSource := SchemaFieldSources(opInfo.operationsSources, opInfo.methodDiff, paramDiff.SchemaDiff, "type")
+	baseSource, revisionSource := location.SchemaFieldSources(opInfo.operationsSources, opInfo.methodDiff, paramDiff.SchemaDiff, "type")
 	result = append(result, opInfo.NewApiChange(
 		messageId,
 		args,
@@ -152,13 +154,13 @@ func checkParameterPropertyListOfTypesChange(opInfo opInfo, propertyPath string,
 
 	if len(listDiff.Deleted) > 0 {
 		messageId = RequestParameterPropertyListOfTypesNarrowedId
-		args = []any{propertyFullName(propertyPath, propertyName), param.In, param.Name, joinTypes(listDiff.Deleted)}
+		args = []any{schemawalk.PropertyFullName(propertyPath, propertyName), param.In, param.Name, joinTypes(listDiff.Deleted)}
 	} else {
 		messageId = RequestParameterPropertyListOfTypesWidenedId
-		args = []any{propertyFullName(propertyPath, propertyName), param.In, param.Name, joinTypes(listDiff.Added)}
+		args = []any{schemawalk.PropertyFullName(propertyPath, propertyName), param.In, param.Name, joinTypes(listDiff.Added)}
 	}
 
-	baseSource, revisionSource := SchemaFieldSources(opInfo.operationsSources, opInfo.methodDiff, propertyDiff, "type")
+	baseSource, revisionSource := location.SchemaFieldSources(opInfo.operationsSources, opInfo.methodDiff, propertyDiff, "type")
 	result = append(result, opInfo.NewApiChange(
 		messageId,
 		args,

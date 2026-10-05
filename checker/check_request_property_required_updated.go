@@ -1,6 +1,8 @@
 package checker
 
 import (
+	"github.com/oasdiff/oasdiff/checker/location"
+	"github.com/oasdiff/oasdiff/checker/schemawalk"
 	"github.com/oasdiff/oasdiff/diff"
 )
 
@@ -22,8 +24,8 @@ func RequestPropertyRequiredUpdatedCheck(diffReport *diff.Diff, operationsSource
 				if !changedRequiredPropertyRelevant(schemaDiff, changedRequiredPropertyName) {
 					continue
 				}
-				srcBase, srcRevision := SchemaAddedItemSources(operationsSources, info.operationItem, schemaDiff, "required", changedRequiredPropertyName)
-				args := []any{propertyFullName(propertyPath, propertyFullName(propertyName, changedRequiredPropertyName))}
+				srcBase, srcRevision := location.SchemaAddedItemSources(operationsSources, info.operationItem, schemaDiff, "required", changedRequiredPropertyName)
+				args := []any{schemawalk.PropertyFullName(propertyPath, schemawalk.PropertyFullName(propertyName, changedRequiredPropertyName))}
 				if schemaDiff.Revision.Properties[changedRequiredPropertyName].Value.Default == nil {
 					result = append(result, info.newChange(RequestPropertyBecameRequiredId, args, "").
 						WithSources(srcBase, srcRevision))
@@ -41,8 +43,8 @@ func RequestPropertyRequiredUpdatedCheck(diffReport *diff.Diff, operationsSource
 				if !changedRequiredPropertyRelevant(schemaDiff, changedRequiredPropertyName) {
 					continue
 				}
-				srcBase, srcRevision := SchemaDeletedItemSources(operationsSources, info.operationItem, schemaDiff, "required", changedRequiredPropertyName)
-				args := []any{propertyFullName(propertyPath, propertyFullName(propertyName, changedRequiredPropertyName))}
+				srcBase, srcRevision := location.SchemaDeletedItemSources(operationsSources, info.operationItem, schemaDiff, "required", changedRequiredPropertyName)
+				args := []any{schemawalk.PropertyFullName(propertyPath, schemawalk.PropertyFullName(propertyName, changedRequiredPropertyName))}
 				result = append(result, info.newChange(RequestPropertyBecameOptionalId, args, "").
 					WithSources(srcBase, srcRevision))
 			}

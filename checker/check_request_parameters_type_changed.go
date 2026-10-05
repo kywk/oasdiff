@@ -2,6 +2,8 @@ package checker
 
 import (
 	"github.com/getkin/kin-openapi/openapi3"
+	"github.com/oasdiff/oasdiff/checker/location"
+	"github.com/oasdiff/oasdiff/checker/schemawalk"
 	"github.com/oasdiff/oasdiff/diff"
 )
 
@@ -110,7 +112,7 @@ func RequestParameterTypeChangedCheck(diffReport *diff.Diff, operationsSources *
 			return
 		}
 
-		baseSource, revisionSource := SchemaFieldSources(operationsSources, p.opInfo.methodDiff, p.paramDiff.SchemaDiff, "type")
+		baseSource, revisionSource := location.SchemaFieldSources(operationsSources, p.opInfo.methodDiff, p.paramDiff.SchemaDiff, "type")
 		schemaDiff := p.paramDiff.SchemaDiff
 		typeDiff := schemaDiff.TypeDiff
 		formatDiff := schemaDiff.FormatDiff
@@ -143,11 +145,11 @@ func RequestParameterTypeChangedCheck(diffReport *diff.Diff, operationsSources *
 			).WithSchema(schemaDiff).WithSources(baseSource, revisionSource))
 		}
 
-		checkModifiedPropertiesDiff(
+		schemawalk.ModifiedProperties(
 			schemaDiff,
 			func(propertyPath string, propertyName string, propertyDiff *diff.SchemaDiff, parent *diff.SchemaDiff) {
 
-				propBaseSource, propRevisionSource := SchemaFieldSources(operationsSources, p.opInfo.methodDiff, propertyDiff, "type")
+				propBaseSource, propRevisionSource := location.SchemaFieldSources(operationsSources, p.opInfo.methodDiff, propertyDiff, "type")
 				schemaDiff := propertyDiff
 				typeDiff := schemaDiff.TypeDiff
 				formatDiff := schemaDiff.FormatDiff
@@ -158,7 +160,7 @@ func RequestParameterTypeChangedCheck(diffReport *diff.Diff, operationsSources *
 
 					result = append(result, p.opInfo.NewApiChange(
 						id,
-						[]any{p.location, p.name, getTypeFormatDimension(schemaDiff), propertyFullName(propertyPath, propertyName), getBaseTypeFormat(schemaDiff), getRevisionTypeFormat(schemaDiff)},
+						[]any{p.location, p.name, getTypeFormatDimension(schemaDiff), schemawalk.PropertyFullName(propertyPath, propertyName), getBaseTypeFormat(schemaDiff), getRevisionTypeFormat(schemaDiff)},
 						comment,
 					).WithSchema(schemaDiff).WithSources(propBaseSource, propRevisionSource))
 				}

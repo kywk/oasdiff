@@ -3,6 +3,8 @@ package checker
 import (
 	"fmt"
 
+	"github.com/oasdiff/oasdiff/checker/location"
+	"github.com/oasdiff/oasdiff/checker/schemawalk"
 	"github.com/oasdiff/oasdiff/diff"
 )
 
@@ -29,7 +31,7 @@ func RequestParameterEnumValueUpdatedCheck(diffReport *diff.Diff, operationsSour
 			func(enumVal any) []any { return []any{enumVal, p.location, p.name} },
 		)...)
 
-		checkModifiedPropertiesDiff(
+		schemawalk.ModifiedProperties(
 			p.paramDiff.SchemaDiff,
 			func(propertyPath string, propertyName string, propertyDiff *diff.SchemaDiff, parent *diff.SchemaDiff) {
 				result = append(result, checkParameterEnumDiff(
@@ -39,7 +41,7 @@ func RequestParameterEnumValueUpdatedCheck(diffReport *diff.Diff, operationsSour
 					RequestParameterPropertyEnumValueRemovedId,
 					RequestParameterPropertyEnumValueAddedId,
 					func(enumVal any) []any {
-						return []any{enumVal, propertyFullName(propertyPath, propertyName), p.location, p.name}
+						return []any{enumVal, schemawalk.PropertyFullName(propertyPath, propertyName), p.location, p.name}
 					},
 				)...)
 			})
@@ -60,7 +62,7 @@ func checkParameterEnumDiff(
 	}
 
 	for _, enumVal := range enumDiff.Deleted {
-		baseSource, revisionSource := SchemaDeletedItemSources(opInfo.operationsSources, opInfo.methodDiff, schemaDiff, "enum", fmt.Sprintf("%v", enumVal))
+		baseSource, revisionSource := location.SchemaDeletedItemSources(opInfo.operationsSources, opInfo.methodDiff, schemaDiff, "enum", fmt.Sprintf("%v", enumVal))
 		result = append(result, opInfo.NewApiChange(
 			removedId,
 			makeArgs(enumVal),
@@ -69,7 +71,7 @@ func checkParameterEnumDiff(
 	}
 
 	for _, enumVal := range enumDiff.Added {
-		baseSource, revisionSource := SchemaAddedItemSources(opInfo.operationsSources, opInfo.methodDiff, schemaDiff, "enum", fmt.Sprintf("%v", enumVal))
+		baseSource, revisionSource := location.SchemaAddedItemSources(opInfo.operationsSources, opInfo.methodDiff, schemaDiff, "enum", fmt.Sprintf("%v", enumVal))
 		result = append(result, opInfo.NewApiChange(
 			addedId,
 			makeArgs(enumVal),

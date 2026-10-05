@@ -3,6 +3,8 @@ package checker
 import (
 	"slices"
 
+	"github.com/oasdiff/oasdiff/checker/location"
+	"github.com/oasdiff/oasdiff/checker/schemawalk"
 	"github.com/oasdiff/oasdiff/diff"
 )
 
@@ -27,10 +29,10 @@ func RequestPropertyWriteOnlyReadOnlyCheck(diffReport *diff.Diff, operationsSour
 				return
 			}
 			required := slices.Contains(p.parent.Base.Required, p.propertyName)
-			propName := propertyFullName(p.propertyPath, p.propertyName)
+			propName := schemawalk.PropertyFullName(p.propertyPath, p.propertyName)
 
 			if writeOnlyDiff := p.propertyDiff.WriteOnlyDiff; writeOnlyDiff != nil {
-				propBaseSource, propRevisionSource := SchemaFieldSources(operationsSources, info.operationItem, p.propertyDiff, "writeOnly")
+				propBaseSource, propRevisionSource := location.SchemaFieldSources(operationsSources, info.operationItem, p.propertyDiff, "writeOnly")
 				var id string
 				if required {
 					id = RequestRequiredPropertyBecameNonWriteOnlyCheckId
@@ -51,7 +53,7 @@ func RequestPropertyWriteOnlyReadOnlyCheck(diffReport *diff.Diff, operationsSour
 			}
 
 			if readOnlyDiff := p.propertyDiff.ReadOnlyDiff; readOnlyDiff != nil {
-				propBaseSource, propRevisionSource := SchemaFieldSources(operationsSources, info.operationItem, p.propertyDiff, "readOnly")
+				propBaseSource, propRevisionSource := location.SchemaFieldSources(operationsSources, info.operationItem, p.propertyDiff, "readOnly")
 				var id string
 				if required {
 					id = RequestRequiredPropertyBecameNonReadOnlyCheckId

@@ -3,6 +3,7 @@ package checker
 import (
 	"encoding/json"
 	"fmt"
+	"slices"
 
 	"github.com/getkin/kin-openapi/openapi3"
 	"github.com/oasdiff/oasdiff/checker/location"
@@ -16,6 +17,7 @@ const (
 
 // applyStabilityLevelPolicy is a thin pipeline that validates, detects changes, and filters.
 func applyStabilityLevelPolicy(config *Config, diffReport *diff.Diff, result Changes, operationsSources *diff.OperationsSourcesMap) Changes {
+	filterSecurityContextBelowStabilityThreshold(config, diffReport)
 	if diffReport.PathsDiff == nil {
 		return result
 	}
@@ -183,15 +185,29 @@ func filterBelowStabilityThreshold(config *Config, diffReport *diff.Diff) {
 
 		// Filter modified operations below threshold
 		for operation := range pathDiff.OperationsDiff.Modified {
-			revisionStability, err := getStabilityLevel(pathDiff.Revision.GetOperation(operation).Extensions)
-			if err != nil {
-				continue
-			}
-			if !config.StabilityLevel.IsIncluded(revisionStability) {
+			if belowStabilityThreshold(config, pathDiff.Revision.GetOperation(operation)) {
 				delete(pathDiff.OperationsDiff.Modified, operation)
 			}
 		}
 	}
+}
+
+func filterSecurityContextBelowStabilityThreshold(config *Config, diffReport *diff.Diff) {
+	if config == nil || diffReport.SecurityContext == nil {
+		return
+	}
+	diffReport.SecurityContext.Operations = slices.DeleteFunc(diffReport.SecurityContext.Operations, func(pair diff.OperationPair) bool {
+		return belowStabilityThreshold(config, pair.Revision)
+	})
+}
+
+// An operation whose stability level does not parse counts as in scope.
+func belowStabilityThreshold(config *Config, operation *openapi3.Operation) bool {
+	stability, err := getStabilityLevel(operation.Extensions)
+	if err != nil {
+		return false
+	}
+	return !config.StabilityLevel.IsIncluded(stability)
 }
 
 // normalizedStability returns StabilityStable for an empty label, otherwise the label itself.
@@ -219,18 +235,16 @@ func getStabilityLevel(i map[string]any) (string, error) {
 	if i == nil || i[diff.XStabilityLevelExtension] == nil {
 		return "", nil
 	}
-	var stabilityLevel string
+	value := i[diff.XStabilityLevelExtension]
+	if jsonStabilityRaw, ok := value.(json.RawMessage); ok {
+		if err := json.Unmarshal(jsonStabilityRaw, &value); err != nil {
+			return "", fmt.Errorf("failed to unmarshal x-stability-level json: %w", err)
+		}
+	}
 
-	stabilityLevel, ok := i[diff.XStabilityLevelExtension].(string)
+	stabilityLevel, ok := value.(string)
 	if !ok {
-		jsonStabilityRaw, ok := i[diff.XStabilityLevelExtension].(json.RawMessage)
-		if !ok {
-			return "", fmt.Errorf("x-stability-level isn't a string nor valid json")
-		}
-		err := json.Unmarshal(jsonStabilityRaw, &stabilityLevel)
-		if err != nil {
-			return "", fmt.Errorf("failed to unmarshal x-stability-level json")
-		}
+		return "", fmt.Errorf("value is not one of %s, %s, %s or %s: %s", StabilityDraft, StabilityAlpha, StabilityBeta, StabilityStable, extensionValueText(value))
 	}
 
 	if stabilityLevel != StabilityDraft &&

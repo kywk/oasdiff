@@ -1,4 +1,7 @@
 # How oasdiff compares endpoints
+
+[English](MATCHING-ENDPOINTS.md) | [繁體中文](zh-tw/MATCHING-ENDPOINTS.md)
+
 Oasdiff compares matching endpoints to each other.  
 By default, the matching algorithm **ignores** path parameter names.  
 For example, the following endpoints will be compared to each other because they differ only by a path parameter name:

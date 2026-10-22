@@ -1,5 +1,7 @@
 # Security
 
+[English](SECURITY.md) | [繁體中文](zh-tw/SECURITY.md)
+
 ## SSRF via External $refs
 
 OpenAPI specs can contain `$ref` values that point to external URLs or files.

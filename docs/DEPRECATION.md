@@ -1,4 +1,7 @@
 # Deprecating APIs, Parameters and Properties
+
+[English](DEPRECATION.md) | [繁體中文](zh-tw/DEPRECATION.md)
+
 Sometimes [resources](#supported-resources-for-deprecation) need to be removed from the API, for example, when we replace an API endpoint by a new version, or when a parameter is no longer supported.  
 As API owners, we want a process that will allow us to phase out the old resource smoothly as possible and with minimal disruptions to business.
 

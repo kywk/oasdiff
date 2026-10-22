@@ -1,5 +1,7 @@
 # HTTP Authentication for Remote Specs
 
+[English](HTTP-AUTH.md) | [繁體中文](zh-tw/HTTP-AUTH.md)
+
 When loading OpenAPI specs from HTTP(S) URLs that require authentication, you can use the `--header` and `--query` flags to inject credentials into every HTTP request oasdiff makes — including requests to resolve external `$ref`s.
 
 ## Usage

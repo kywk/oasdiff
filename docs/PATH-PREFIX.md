@@ -1,4 +1,7 @@
 # Path Prefix Modification
+
+[English](PATH-PREFIX.md) | [繁體中文](zh-tw/PATH-PREFIX.md)
+
 Sometimes paths prefixes need to be modified, for example, to create a new version:
 - /api/v1/...
 - /api/v2/...

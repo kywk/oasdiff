@@ -1,5 +1,7 @@
 # Asciidoc Output Format
 
+[English](ASCIIDOC.md) | [繁體中文](zh-tw/ASCIIDOC.md)
+
 oasdiff supports [Asciidoc](https://asciidoc.org/) as an output format for the `diff` and `changelog` commands.
 
 ## Usage

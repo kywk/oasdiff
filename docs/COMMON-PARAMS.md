@@ -1,5 +1,7 @@
 # Common Parameters
 
+[English](COMMON-PARAMS.md) | [繁體中文](zh-tw/COMMON-PARAMS.md)
+
 ## Common Parameters Definition
 Parameters shared by all operations of a path can be defined on the path level instead of the operation level.  
 Path level parameters are inherited by all operations of that path.  

@@ -1,5 +1,7 @@
 # Errors
 
+[English](ERRORS.md) | [繁體中文](zh-tw/ERRORS.md)
+
 ## Invalid Specs
 Oasdiff expects valid OpenAPI 3 specs as input.  
 The specs can be written in JSON or YAML.  

@@ -1,4 +1,7 @@
 # Breaking Changes and Changelog
+
+[English](BREAKING-CHANGES.md) | [繁體中文](zh-tw/BREAKING-CHANGES.md)
+
 As your API evolves, it undergoes changes. Some of these changes may be "breaking" while others are not.  
 The `oasdiff breaking` command displays the changes that break existing API clients.  
 The `oasdiff changelog` command displays the changes that can affect API consumers, both breaking and non-breaking. Documentation-only edits, such as descriptions and examples, are not included; use `oasdiff diff` to see every difference in the API definition.  

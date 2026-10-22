@@ -1,5 +1,7 @@
 # Validate
 
+[English](VALIDATE.md) | [繁體中文](zh-tw/VALIDATE.md)
+
 `oasdiff validate <spec>` checks a single OpenAPI spec for per-RFC violations: invalid `type` values, missing required fields, malformed paths, bad regex patterns, unresolved `$ref`s, and similar structural problems. It validates the document against the OpenAPI and JSON Schema rules.
 
 It is not a configurable style linter (like Spectral); findings are spec-defined violations, plus a small set of oasdiff-native lints for constructs that are valid OpenAPI but contradictory or under-specified (duplicate enum values, ambiguous parameter serialization, and a required parameter or property that also declares a default, where the default can never apply). Each finding is classified by severity (error, warning, or info).

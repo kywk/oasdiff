@@ -1,5 +1,7 @@
 # Filtering Endpoints
 
+[English](FILTERING-ENDPOINTS.md) | [繁體中文](zh-tw/FILTERING-ENDPOINTS.md)
+
 You can filter endpoints in two ways:
 
 ## By path name

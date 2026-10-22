@@ -1,5 +1,7 @@
 # Git Diff Driver
 
+[English](GIT-DIFF-DRIVER.md) | [繁體中文](zh-tw/GIT-DIFF-DRIVER.md)
+
 oasdiff can run as a [git external diff driver](https://git-scm.com/docs/git#Documentation/git.txt-codeGITEXTERNALDIFFcode) so that `git log --patch`, `git diff`, and `git show` render a human-readable changelog of OpenAPI changes inline, instead of a raw YAML text diff.
 
 Inspired by [Jamie Tanna's post on using oasdiff as a git diff driver](https://www.jvt.me/posts/2026/04/11/oasdiff-driver/). The previous bash wrapper described there is no longer needed.

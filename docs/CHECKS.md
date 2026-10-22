@@ -1,4 +1,7 @@
 # Checks
+
+[English](CHECKS.md) | [繁體中文](zh-tw/CHECKS.md)
+
 The `oasdiff checks` command displays the rules oasdiff applies. There is one listing per rule set:
 
 - `oasdiff checks changelog` — the checks that `oasdiff breaking` and `oasdiff changelog` apply when comparing two specs. The rest of this page describes these.

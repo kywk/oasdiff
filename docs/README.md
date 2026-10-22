@@ -4,6 +4,8 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/oasdiff/oasdiff.svg)](https://pkg.go.dev/github.com/oasdiff/oasdiff)
 [![Docker Image Version](https://img.shields.io/docker/v/tufin/oasdiff?sort=semver)](https://hub.docker.com/r/tufin/oasdiff/tags)
 
+[English](README.md) | [繁體中文](README_zh-tw.md)
+
 ![oasdiff banner](https://github.com/yonatanmgr/oasdiff/assets/31913495/ac9b154e-72d1-4969-bc3b-f527bbe7751d)
 
 

@@ -1,4 +1,7 @@
 # Merging AllOf Schemas [Beta]
+
+[English](ALLOF.md) | [繁體中文](zh-tw/ALLOF.md)
+
 OpenAPI 3.0 provides several keywords which can be used to combine schemas.  
 You can use these keywords to create a complex schema or validate a value against multiple criteria.  
 - oneOf – validates the value against exactly one of the subschemas

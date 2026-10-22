@@ -1,5 +1,7 @@
 # Usage Examples
 
+[English](USAGE_EXAMPLES.md) | [繁體中文](zh-tw/USAGE_EXAMPLES.md)
+
 ## OpenAPI diff of local files in YAML
 ```bash
 oasdiff diff data/openapi-test1.yaml data/openapi-test2.yaml

@@ -1,5 +1,7 @@
 # Loading Specs from Git Revisions
 
+[English](GIT-REVISION.md) | [繁體中文](zh-tw/GIT-REVISION.md)
+
 oasdiff can load OpenAPI specs directly from any git revision using the standard `<ref>:<path>` syntax — no extra flags, no temp files, no manual `git show` steps.
 
 ## Syntax

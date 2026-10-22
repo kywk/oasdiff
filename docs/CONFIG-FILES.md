@@ -1,4 +1,7 @@
 # Configuration Files
+
+[English](CONFIG-FILES.md) | [繁體中文](zh-tw/CONFIG-FILES.md)
+
 The `oasdiff` command can read its configuration from a file.  
 This is useful for complex configurations or repeated usage patterns.
 

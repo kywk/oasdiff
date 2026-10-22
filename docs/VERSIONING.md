@@ -1,4 +1,7 @@
 # Version Bumps and Breaking Changes
+
+[English](VERSIONING.md) | [繁體中文](zh-tw/VERSIONING.md)
+
 If you version your API with [semantic versioning](https://semver.org), a breaking change is supposed to come with a major version bump.  
 Oasdiff can tell you when it didn't, because it already knows both halves: the severity of the change, and `info.version` on each side.
 

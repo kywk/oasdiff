@@ -1,5 +1,7 @@
 # OpenAPI 3.1 Support
 
+[English](OPENAPI-31.md) | [繁體中文](zh-tw/OPENAPI-31.md)
+
 oasdiff supports OpenAPI 3.1 specs across its commands.
 3.2 specs are read too; see [OpenAPI 3.2](#openapi-32) below.
 

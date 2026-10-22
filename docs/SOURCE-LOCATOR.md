@@ -1,5 +1,7 @@
 # Source Location Tracking
 
+[English](SOURCE-LOCATOR.md) | [繁體中文](zh-tw/SOURCE-LOCATOR.md)
+
 oasdiff can correlate breaking changes and changelog entries with the exact line and column in the OpenAPI spec file where the change occurred.  
 This enables inline annotations on GitHub pull requests, pointing reviewers directly to the relevant lines.
 

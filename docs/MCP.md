@@ -1,5 +1,7 @@
 # MCP server
 
+[English](MCP.md) | [繁體中文](zh-tw/MCP.md)
+
 oasdiff is available as a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server, so AI assistants like Claude and Cursor can run it for you. Ask "does this change break the API?" and the assistant calls oasdiff on your specs and reads back the result.
 
 It is a remote server over the Streamable HTTP transport, hosted at `https://api.oasdiff.com/mcp`. No install, no API key.

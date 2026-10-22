@@ -1,115 +1,117 @@
 # oasdiff inventory
 
-API 清冊盤點工具，提供 API 盤點表的產製、檢視、差異比對、更新及合併功能。
+[English](inventory.md) | [繁體中文](zh-tw/inventory.md)
 
-## 概述
+API inventory auditing tool for generating, reviewing, diffing, updating, and merging API inventory spreadsheets.
 
-`oasdiff inventory` 子命令群組用於定期盤點 API 清冊。透過 OpenAPI 規格文件與設定檔，自動化產出及維護 API 盤點表（CSV / Excel 格式）。
+## Overview
 
-## 子命令
+The `oasdiff inventory` command group is designed for periodic API inventory audits. Using OpenAPI specifications and configuration files, it automates the creation and maintenance of API inventory spreadsheets (in CSV and Excel formats).
 
-| 子命令 | 用途 |
-|--------|------|
-| `generate` | 從 OpenAPI spec 產出全新盤點表 |
-| `review` | 摘要統計 API 資訊（含自定義屬性分組） |
-| `diff` | 比對 OpenAPI spec 與既有盤點表的差異 |
-| `apply` | 將差異套用至盤點表 |
-| `merge` | 合併兩份盤點表 |
+## Subcommands
 
-## Config 設定檔
+| Subcommand | Description |
+|---|---|
+| `generate` | Generate a new inventory spreadsheet from an OpenAPI spec |
+| `review` | Summarize API statistics and breakdown (including custom extension grouping) |
+| `diff` | Compare differences between an OpenAPI spec and an existing inventory |
+| `apply` | Apply detected changes to the inventory spreadsheet |
+| `merge` | Merge two inventory spreadsheets |
 
-設定檔支援 YAML 與 JSON 格式。
+## Configuration File
 
-### 範例 (YAML)
+The configuration file supports YAML and JSON formats.
+
+### Example (YAML)
 
 ```yaml
-prefix: "API"        # 流水號前綴
-output: "csv"        # 預設輸出格式: csv | excel
+prefix: "API"        # Serial number prefix
+output: "csv"        # Default output format: csv | excel
 columns:
   - source: "method"
-    header: "HTTP方法"
+    header: "HTTP Method"
   - source: "path"
-    header: "API路徑"
+    header: "API Path"
   - source: "operationId"
-    header: "操作ID"
+    header: "Operation ID"
   - source: "summary"
-    header: "摘要說明"
+    header: "Summary"
   - source: "description"
-    header: "詳細描述"
+    header: "Description"
   - source: "tags"
-    header: "標籤"
+    header: "Tags"
   - source: "parameters"
-    header: "參數"
-  - source: "requestBody"     # 僅 Excel 支援
-    header: "請求主體"
-  - source: "responses"       # 僅 Excel 支援
-    header: "回應"
+    header: "Parameters"
+  - source: "requestBody"     # Excel only
+    header: "Request Body"
+  - source: "responses"       # Excel only
+    header: "Responses"
   - source: "x-transaction"
-    header: "交易類別"
+    header: "Transaction Type"
     type: "boolean"
 ```
 
-### 欄位說明
+### Column Reference
 
-**固定欄位（前三欄，自動產生）：**
+**Fixed Columns (First 3 columns, generated automatically):**
 
-| 欄位 | 說明 |
-|------|------|
-| 編號 | 前綴 + 流水號（三碼零填充，破千自動增長）例：API-001 |
-| 日期 | YYYY-MM-DD 格式的產製/異動日期 |
-| 異動 | 新增 / 修改 / 刪除 |
+| Column | Description |
+|---|---|
+| ID | Prefix + Serial Number (3-digit zero-padded, expands past 999), e.g. API-001 |
+| Date | Creation or modification date in YYYY-MM-DD format |
+| Action | Added / Modified / Deleted |
 
-**可設定欄位 (source)：**
+**Configurable Columns (`source`):**
 
-| source | 說明 |
-|--------|------|
-| `method` | HTTP 方法 (GET, POST, PUT, DELETE 等) |
-| `path` | API 路徑 |
+| source | Description |
+|---|---|
+| `method` | HTTP method (GET, POST, PUT, DELETE, etc.) |
+| `path` | API path |
 | `operationId` | Operation ID |
-| `summary` | 操作摘要 |
-| `description` | 操作描述 |
-| `tags` | 標籤（逗號分隔） |
-| `parameters` | 參數列表，格式：`name(in)*`（*表示必填） |
-| `requestBody` | 請求主體 schema（僅 Excel） |
-| `responses` | 回應 schema（僅 Excel） |
-| `x-*` | 自定義 OpenAPI Extension |
+| `summary` | Operation summary |
+| `description` | Operation description |
+| `tags` | Comma-separated tags |
+| `parameters` | Parameter list, format: `name(in)*` (`*` indicates required) |
+| `requestBody` | Request body schema (Excel only) |
+| `responses` | Response schemas (Excel only) |
+| `x-*` | Custom OpenAPI Extension |
 
-**type 屬性（可選）：** `boolean`, `string`, `array`。影響 x- 屬性值的格式化方式。
+**`type` attribute (optional):** `boolean`, `string`, `array`. Controls how the `x-` extension value is formatted.
 
-## 使用範例
+## Usage Examples
 
-### generate — 產出盤點表
+### generate — Generate an inventory spreadsheet
 
 ```bash
-# 輸出 CSV 到 stdout
+# Output CSV to stdout
 oasdiff inventory generate --inventory-config config.yaml openapi.yaml
 
-# 輸出到檔案
+# Output to a file
 oasdiff inventory generate --inventory-config config.yaml openapi.yaml -o inventory.csv
 
-# 輸出 Excel
+# Output to Excel
 oasdiff inventory generate --inventory-config config.yaml openapi.yaml --format excel -o inventory.xlsx
 
-# Composed mode（多檔合併）
+# Composed mode (merging multiple specs)
 oasdiff inventory generate --inventory-config config.yaml --composed "specs/*.yaml" -o inventory.csv
 ```
 
-**輸出範例：**
+**Example Output:**
 
-```
-編號,日期,異動,HTTP方法,API路徑,操作ID,摘要說明,標籤,交易類別
-API-001,2024-01-15,新增,GET,/users,listUsers,List all users,users,false
-API-002,2024-01-15,新增,POST,/users,createUser,Create a user,users,true
-API-003,2024-01-15,新增,GET,/orders,listOrders,List orders,orders,false
+```csv
+ID,Date,Action,HTTP Method,API Path,Operation ID,Summary,Tags,Transaction Type
+API-001,2024-01-15,Added,GET,/users,listUsers,List all users,users,false
+API-002,2024-01-15,Added,POST,/users,createUser,Create a user,users,true
+API-003,2024-01-15,Added,GET,/orders,listOrders,List orders,orders,false
 ```
 
-### review — 摘要檢視
+### review — Summarize inventory statistics
 
 ```bash
 oasdiff inventory review --inventory-config config.yaml openapi.yaml
 ```
 
-**輸出範例：**
+**Example Output:**
 
 ```
 === API Inventory Review ===
@@ -126,7 +128,7 @@ Total APIs: 6
   GET: 3 APIs
   POST: 2 APIs
 
---- 交易類別 (x-transaction) ---
+--- Transaction Type (x-transaction) ---
   x-transaction=false: 3 APIs
     - GET /users
     - GET /orders
@@ -137,13 +139,13 @@ Total APIs: 6
     - DELETE /users/{id}
 ```
 
-### diff — 差異比對
+### diff — Compare spec against inventory
 
 ```bash
 oasdiff inventory diff --inventory-config config.yaml --inventory inventory.csv openapi.yaml
 ```
 
-**輸出範例：**
+**Example Output:**
 
 ```
 === Inventory Diff ===
@@ -153,50 +155,50 @@ oasdiff inventory diff --inventory-config config.yaml --inventory inventory.csv 
 
 --- Modified (1) ---
   ~ API-001 GET /users
-      摘要說明: "List all users" → "List all users (paginated)"
+      Summary: "List all users" → "List all users (paginated)"
 
 --- Deleted (2) ---
   - API-003 GET /orders
   - API-004 POST /orders
 ```
 
-### apply — 套用變更
+### apply — Apply changes to inventory
 
 ```bash
-# 更新到新檔案
+# Update to a new file
 oasdiff inventory apply --inventory-config config.yaml --inventory inventory.csv openapi.yaml -o inventory-updated.csv
 
-# 直接覆寫原檔
+# Overwrite existing file in-place
 oasdiff inventory apply --inventory-config config.yaml --inventory inventory.csv openapi.yaml
 ```
 
-### merge — 合併盤點表
+### merge — Merge two inventory sheets
 
 ```bash
 oasdiff inventory merge --inventory-config config.yaml --base main-inventory.csv --patch team-inventory.csv -o merged.csv
 ```
 
-## 核心規則
+## Core Rules
 
-### API 識別鍵
-以 **method + path** 作為 API 的唯一識別。
+### API Identifier Key
+Uses **method + path** as the unique identifier for an API.
 
-### 流水號規則
-- 三碼零填充（001-999），破千自動增長
-- 已刪除的 API 編號**永不重用**
-- 新增 API 接續當前最大流水號 + 1
+### Serial Number Rules
+- 3-digit zero-padded numbers (001-999), automatically expanding beyond 999.
+- Numbers of deleted APIs are **never reused**.
+- New APIs receive the current maximum serial number + 1.
 
-### 異動判斷
-僅比對 config 中定義的欄位值，任一欄位有變更即視為「修改」。
+### Change Detection
+Only compares columns defined in the config. Any change to these column values is classified as "Modified".
 
-### 刪除處理
-- 已刪除的 API **保留在盤點表中**
-- 日期更新為刪除日期
-- 異動欄標記「刪除」
-- **API 不可起死回生**：即使相同 endpoint 重新出現，也視為全新 API 並分配新編號
+### Deletion Handling
+- Deleted APIs are **retained in the inventory sheet**.
+- Date is updated to the deletion date.
+- Action column is marked as "Deleted".
+- **APIs cannot resurrect**: even if an identical endpoint is reintroduced, it is treated as an entirely new API with a new serial ID.
 
-### Merge 規則
-- 基礎文件的編號**永不異動**
-- 新 API 使用基礎文件的下一個流水號
-- 資訊衝突時以**更新時間最新者**為準
-- 遵循相同的「不可起死回生」規則
+### Merge Rules
+- Base document IDs are **never altered**.
+- New APIs take the next serial number following the base document's maximum.
+- In case of information conflicts, the record with the **most recent update time** takes precedence.
+- Follows the same "no resurrection" rule.

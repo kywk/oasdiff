@@ -1,5 +1,7 @@
 # Change Fingerprints
 
+[English](FINGERPRINT.md) | [繁體中文](zh-tw/FINGERPRINT.md)
+
 Each changelog entry reported by oasdiff includes a `fingerprint` — a short, stable identifier derived from the content of the change.
 
 ## What it is

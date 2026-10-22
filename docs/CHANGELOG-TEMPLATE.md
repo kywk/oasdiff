@@ -1,5 +1,7 @@
 # OpenAPI Changelog with Custom Template
 
+[English](CHANGELOG-TEMPLATE.md) | [繁體中文](zh-tw/CHANGELOG-TEMPLATE.md)
+
 You can customize the changelog output format by providing a custom template file when using `markdown` or `html` format:
 
 ```bash

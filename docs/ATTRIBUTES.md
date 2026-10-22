@@ -1,4 +1,7 @@
 # Add OpenAPI Extensions to the Changelog
+
+[English](ATTRIBUTES.md) | [繁體中文](zh-tw/ATTRIBUTES.md)
+
 OpenAPI specs can carry custom `x-*` extension fields that attach metadata to operations. For example:
 ```
 /restapi/oauth/token:

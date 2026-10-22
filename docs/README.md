@@ -77,6 +77,7 @@ The top-level subcommands, grouped as in `oasdiff --help`.
 - [`validate`](VALIDATE.md) — check a spec for per-RFC violations (invalid types, missing required fields, bad regex, unresolved `$ref`s)
 - [`upgrade`](OPENAPI-31.md#converting-a-spec-with-oasdiff-upgrade) — canonicalize an OpenAPI 3.0 spec to the latest 3.x
 - [`flatten`](ALLOF.md) — replace `allOf` schemas with a merged equivalent
+- [`options`](OPTIONS.md) — add OPTIONS methods to endpoints for CORS preflight
 
 **Git integration**
 

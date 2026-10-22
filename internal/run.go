@@ -60,6 +60,7 @@ func Run(args []string, stdout io.Writer, stderr io.Writer) int {
 		inGroup(getValidateCmd(), groupSingleSpec),
 		inGroup(getUpgradeCmd(), groupSingleSpec),
 		inGroup(getFlattenCmd(), groupSingleSpec),
+		inGroup(getOptionsCmd(), groupSingleSpec),
 		inGroup(getBreakingFilesCmd(), groupGit),
 		inGroup(getGitDiffDriverCmd(), groupGit),
 		inGroup(getInventoryCmd(), groupInventory),

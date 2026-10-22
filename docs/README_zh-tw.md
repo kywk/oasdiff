@@ -76,6 +76,7 @@ macOS、Linux 與 Windows（皆支援 x86_64 與 arm64）的預建二進位檔�
 - [`validate`](zh-tw/VALIDATE.md) — 依 RFC 規範檢查規格是否違規（無效型別、缺少必填欄位、不合法的正規表示式、未解析的 `$ref`）
 - [`upgrade`](zh-tw/OPENAPI-31.md#使用-oasdiff-upgrade-轉換規格) — 將 OpenAPI 3.0 規格正規化轉換為最新的 3.x
 - [`flatten`](zh-tw/ALLOF.md) — 將 `allOf` 結構取代為合併後的等價 Schema
+- [`options`](zh-tw/OPTIONS.md) — 為端點自動補上 OPTIONS 方法以支援 APIM 與瀏覽器 CORS 預檢請求
 
 **Git 整合**
 

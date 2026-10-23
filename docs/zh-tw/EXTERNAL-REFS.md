@@ -1,6 +1,6 @@
 # 安全性 (Security)
 
-[English](../SECURITY.md) | [繁體中文](SECURITY.md)
+[English](../EXTERNAL-REFS.md) | [繁體中文](EXTERNAL-REFS.md)
 
 ## 透過外部 $ref 發動的 SSRF 攻擊
 
@@ -34,6 +34,7 @@ allow-external-refs: false
 此旗標適用於 `diff`、`breaking`、`changelog`、`summary` 與 `flatten` 指令。
 
 當外部引用被停用時，若規格中包含外部 `$ref`，oasdiff 會直接回傳錯誤，而不會向外發出網路請求。
+結束代碼為 123，CI 步驟可据此區分被拒的 `$ref` 與其他載入失敗。
 
 ## CI 環境安全建議
 

@@ -150,7 +150,7 @@ oasdiff 如何配對基準版本（Base）與修訂版本（Revision），以及
 
 ### 參考文件（Reference）
 - [OpenAPI 3.1 與 3.2 支援](zh-tw/OPENAPI-31.md) — 支援狀況與功能
-- [安全性：控制外部 `$ref` 載入以防範 SSRF](zh-tw/SECURITY.md)
+- [安全性：控制外部 `$ref` 載入以防範 SSRF](zh-tw/EXTERNAL-REFS.md)
 - [使用範例與指引](zh-tw/USAGE_EXAMPLES.md) — 常見情境操作配方
 - [參與貢獻](CONTRIB.md)
 

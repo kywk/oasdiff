@@ -1,4 +1,4 @@
-package checker
+package deprecation
 
 import (
 	"encoding/json"
@@ -6,15 +6,18 @@ import (
 	"time"
 
 	"cloud.google.com/go/civil"
+	"github.com/oasdiff/oasdiff/checker/internal/extension"
 	"github.com/oasdiff/oasdiff/diff"
 )
 
-func getSunset(Extensions map[string]any) (any, bool) {
-	value, ok := Extensions[diff.SunsetExtension]
+// sunsetExtension is the element's x-sunset extension, if it has one.
+func sunsetExtension(extensions map[string]any) (any, bool) {
+	value, ok := extensions[diff.SunsetExtension]
 	return value, ok
 }
 
-func getSunsetDate(sunset any) (civil.Date, error) {
+// SunsetDate parses a sunset extension value as an RFC3339 date.
+func SunsetDate(sunset any) (civil.Date, error) {
 	if sunsetJson, ok := sunset.(json.RawMessage); ok {
 		if err := json.Unmarshal(sunsetJson, &sunset); err != nil {
 			return civil.Date{}, fmt.Errorf("failed to unmarshal sunset json: %w", err)
@@ -30,5 +33,5 @@ func getSunsetDate(sunset any) (civil.Date, error) {
 		}
 	}
 
-	return civil.Date{}, fmt.Errorf("sunset date doesn't conform with RFC3339: %s", extensionValueText(sunset))
+	return civil.Date{}, fmt.Errorf("sunset date doesn't conform with RFC3339: %s", extension.ValueText(sunset))
 }

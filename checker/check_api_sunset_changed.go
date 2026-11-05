@@ -5,7 +5,8 @@ import (
 	"time"
 
 	"cloud.google.com/go/civil"
-	"github.com/oasdiff/oasdiff/checker/location"
+	"github.com/oasdiff/oasdiff/checker/internal/deprecation"
+	"github.com/oasdiff/oasdiff/checker/internal/location"
 	"github.com/oasdiff/oasdiff/diff"
 )
 
@@ -55,17 +56,19 @@ func APISunsetChangedCheck(diffReport *diff.Diff, operationsSources *diff.Operat
 				continue
 			}
 
-			date, err := getSunsetDate(opRevision.Extensions[diff.SunsetExtension])
+			date, err := deprecation.SunsetDate(opRevision.Extensions[diff.SunsetExtension])
 			if err != nil {
 				opInfo := newOpInfo(config, opRevision, operationsSources, operation, path)
-				result = append(result, getAPIPathSunsetParse(opInfo, err).WithSources(baseSource, revisionSource))
+				// The revision's value is the one that failed to parse, so the
+				// base, which parsed, is not part of this finding.
+				result = append(result, getAPIPathSunsetParse(opInfo, err).WithSources(nil, revisionSource))
 				continue
 			}
 
-			baseDate, err := getSunsetDate(opBase.Extensions[diff.SunsetExtension])
+			baseDate, err := deprecation.SunsetDate(opBase.Extensions[diff.SunsetExtension])
 			if err != nil {
 				opInfo := newOpInfo(config, opBase, operationsSources, operation, path)
-				result = append(result, getAPIPathSunsetParse(opInfo, err).WithSources(baseSource, revisionSource))
+				result = append(result, getAPIPathSunsetParse(opInfo, err).WithSources(baseSource, nil))
 				continue
 			}
 
@@ -128,12 +131,4 @@ func getDeprecationDays(config *Config, stability string) uint {
 	default:
 		return config.MinSunsetStableDays
 	}
-}
-
-func getAPIDeprecatedSunsetMissing(opInfo opInfo) ApiChange {
-	return opInfo.NewApiChange(
-		APIDeprecatedSunsetMissingId,
-		nil,
-		"",
-	)
 }

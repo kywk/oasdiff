@@ -3,6 +3,7 @@
 [![codecov](https://codecov.io/gh/oasdiff/oasdiff/branch/main/graph/badge.svg?token=Y8BM6X77JY)](https://codecov.io/gh/oasdiff/oasdiff)
 [![Go Reference](https://pkg.go.dev/badge/github.com/oasdiff/oasdiff.svg)](https://pkg.go.dev/github.com/oasdiff/oasdiff)
 [![Docker Image Version](https://img.shields.io/docker/v/tufin/oasdiff?sort=semver)](https://hub.docker.com/r/tufin/oasdiff/tags)
+[![inspect.software](https://raw.githubusercontent.com/inspect-software/badges/main/v1/o/oasdiff/oasdiff.svg)](https://inspect.software/software/oasdiff/oasdiff)
 
 [English](README.md) | [繁體中文](README_zh-tw.md)
 

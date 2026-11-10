@@ -33,7 +33,7 @@ A more mature deprecation process includes a sunset date which tells the API cli
 
 Notes:
 1. In this mode, oasdiff considers the `x-sunset` extension as **optional** allowing developers to deprecate resources with or without the `x-sunset` extension.  
-2. After an `x-sunset` extension is specified, changing it to an earlier date will trigger a breaking change.  
+2. After an `x-sunset` extension is specified, changing it to an earlier date will trigger a breaking change: `api-sunset-date-changed-earlier` for an endpoint, and the parameter and property ids beside it. A date moved earlier than the sunset grace period allows is reported as `*-sunset-date-changed-too-small` instead, which names the period it misses.  
 
 ## Enforcing Sunset Grace Period
 Oasdiff allows you to enforce a sunset grace period: the minimal number of days required between deprecating a resource and removing it.  
@@ -51,7 +51,8 @@ If you are using [API stability levels](STABILITY.md) you can define different s
 Notes:
 1. Deprecation days can be set to non-negative integers
 2. Setting deprecation days to a zero value disables enforcement and reverts to the [Deprecation with a sunset date](#deprecation-with-a-sunset-date) behavior
-3. After an `x-sunset` extension is specified, it can only be changed to a future date which respects the sunset grace period relative to date of the change.
+3. After an `x-sunset` extension is specified, it can only be changed to a later date, or to an earlier one that still respects the sunset grace period relative to the date of the change. Moving it earlier is reported either way, and the grace period decides which id reports it.
+4. Changing an `x-sunset` date which doesn't conform with RFC3339 to one that does is not reported, since clients had no date to rely on. Deleting the date, or changing it to another which doesn't conform, is reported even when `x-stability-level` doesn't resolve to a grace period, since only the grace period comparison needs one. This is the same for endpoints, parameters and properties.
 
 ## Supported Resources for Deprecation
 OpenAPI 3 supports the `deprecated` flag on `Operations`, `Parameters`, `Headers` and `Schemas`. Oasdiff reads it on three of the four:
@@ -76,4 +77,3 @@ At the sunset date or later, the removal isn't reported at all.
 Notes:
 1. An `x-sunset` date which doesn't conform with RFC3339 is reported as `api-path-sunset-parse` for paths and endpoints, and as `request-parameter-sunset-parse` for parameters. For properties it is reported with the plain removal id, since the deprecation checks already report the invalid date.
 2. Removing an optional response property is reported as `response-optional-property-removed` whether or not it was deprecated, since that removal is not breaking either way.
-3. Two property-level checks are still missing: shortening a sunset date and deleting one. See [#858](https://github.com/oasdiff/oasdiff/issues/858).
